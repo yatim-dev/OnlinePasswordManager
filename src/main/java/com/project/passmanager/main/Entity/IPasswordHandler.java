@@ -1,6 +1,6 @@
 package com.project.passmanager.main.Entity;
 
-public interface IPassword {
+public interface IPasswordHandler {
 
     String encrypt(String password);
 
