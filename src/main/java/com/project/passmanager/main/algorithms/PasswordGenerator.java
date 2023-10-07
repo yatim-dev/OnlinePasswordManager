@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Класс `PasswordGenerator` предоставляет возможность генерировать пароли с разными параметрами.
+ * Singleton класс `PasswordGenerator` предоставляет возможность генерировать пароли с разными параметрами.
  * Пользователь может настроить включение/выключение использования нижнего регистра, верхнего регистра,
  * цифр и специальных символов при генерации пароля.
  */
@@ -85,11 +85,9 @@ public class PasswordGenerator {
             return "";
         }
 
-        // Variables.
         StringBuilder password = new StringBuilder(length);
         Random random = new Random(System.nanoTime());
 
-        // Collect the categories to use.
         List<String> charCategories = new ArrayList<>(4);
         if (useLower) {
             charCategories.add(LOWERCASE);
@@ -104,7 +102,6 @@ public class PasswordGenerator {
             charCategories.add(SPECIAL_CHARACTERS);
         }
 
-        // Build the password.
         for (int i = 0; i < length; i++) {
             String charCategory = charCategories.get(random.nextInt(charCategories.size()));
             int position = random.nextInt(charCategory.length());
@@ -118,7 +115,6 @@ public class PasswordGenerator {
     /**
      * Сбрасывает все установленные флаги использования символов (нижний регистр, верхний регистр,
      * цифры, специальные символы) к исходному состоянию.
-     *
      */
     private void resetFlags() {
         this.useLower = false;
