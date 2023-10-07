@@ -1,35 +1,42 @@
 package com.project.passmanager.main.Entity;
 
-public interface Password {
+import org.apache.commons.lang3.RandomStringUtils;
+import org.mindrot.jbcrypt.BCrypt;
+
+/**
+ * Класс `Password` представляет собой реализацию интерфейса `IPassword` и предназначен для работы с паролями.
+ * Он предоставляет методы для шифрования паролей и проверки соответствия хешированных паролей открытому.
+ */
+public class Password implements IPassword {
     /**
-     * Шифрует пароль.
+     * Шифрует переданный пароль с использованием хеширования BCrypt и добавляет к нему случайно сгенерированные "перец" (pepper).
      *
-     * @param plaintext Пароль в открытом тексте.
-     * @return Зашифрованный пароль.
+     * @param password пароль, который нужно зашифровать
+     * @return хешированный пароль с добавленным "перцем"
      */
-    String encrypt(String plaintext);
+    @Override
+    public String encrypt(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt() + getPepper());
+    }
 
     /**
-     * Дешифрует пароль.
+     * Генерирует и возвращает случайно сгенерированные "перец" (pepper), которое может быть добавлено к хешированному паролю.
      *
-     * @param encrypted Зашифрованный пароль.
-     * @return Пароль в открытом тексте.
+     * @return случайно сгенерированные "перец"
      */
-    String decrypt(String encrypted);
+    private String getPepper() {
+        return RandomStringUtils.random((int) (Math.random() * 100), true, true);
+    }
 
     /**
-     * Создает соль для пароля.
+     * Проверяет, соответствует ли заданный кандидат хешированному паролю.
      *
-     * @return Соль для пароля.
+     * @param candidate кандидат на соответствие
+     * @param hashed    хешированный пароль, с которым нужно сравнить кандидата
+     * @return true, если кандидат соответствует хешированному паролю, иначе - false
      */
-    String generateSalt();
-
-    /**
-     * Получает хэш пароля с использованием соли.
-     *
-     * @param password Пароль в открытом тексте.
-     * @param salt     Соль для пароля.
-     * @return Хэш пароля.
-     */
-    String hashPassword(String password, String salt);
+    @Override
+    public Boolean isMatch(String candidate, String hashed) {
+        return BCrypt.checkpw(candidate, hashed);
+    }
 }
