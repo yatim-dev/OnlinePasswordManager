@@ -1,6 +1,6 @@
 package com.project.passmanager.main.network.controllers;
 
-import com.project.passmanager.main.domain.Secret;
+import com.project.passmanager.main.domain.models.Secret;
 import com.project.passmanager.main.network.utils.Pages;
 import com.project.passmanager.main.network.services.SpaceSecretsService;
 import lombok.RequiredArgsConstructor;
@@ -16,14 +16,14 @@ public class SecretController {
     @PostMapping("/secret/save/{id}")
     public String saveData(@PathVariable String id, Secret secret) {
         secret.setId(id);
-        spaceSecretsService.putSecret(secret);
-        return "redirect:/spaceSecret";
+        spaceSecretsService.saveSecret(secret);
+        return Pages.redirectToSecretsList();
     }
 
     @PostMapping("/secret/delete/{id}")
     public String deleteSecret(@PathVariable String id) {
         spaceSecretsService.deleteSecret(id);
-        return "redirect:/spaceSecret";
+        return Pages.redirectToSecretsList();
     }
 
     @PostMapping("/secret/passwordGeneration")

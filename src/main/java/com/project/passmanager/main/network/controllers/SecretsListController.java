@@ -1,6 +1,6 @@
 package com.project.passmanager.main.network.controllers;
 
-import com.project.passmanager.main.domain.Secret;
+import com.project.passmanager.main.domain.models.Secret;
 import com.project.passmanager.main.network.utils.Pages;
 import com.project.passmanager.main.network.services.SpaceSecretsService;
 import lombok.RequiredArgsConstructor;

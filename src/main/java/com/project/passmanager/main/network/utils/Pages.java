@@ -4,4 +4,8 @@ public class Pages {
     public static String SECRETS_LIST = "secretsListPage";
     public static String SECRET = "secretPage";
     public static String PASSWORD_GENERATION = "passwordGenerationPage";
+
+    public static String redirectToSecretsList() {
+        return "redirect:/spaceSecret";
+    }
 }
