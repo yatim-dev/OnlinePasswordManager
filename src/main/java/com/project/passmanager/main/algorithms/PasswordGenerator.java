@@ -3,23 +3,26 @@ package com.project.passmanager.main.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import org.apache.commons.lang3.CharUtils;
+
 
 /**
  * Singleton класс `PasswordGenerator` предоставляет возможность генерировать пароли с разными параметрами.
  * Пользователь может настроить включение/выключение использования нижнего регистра, верхнего регистра,
  * цифр и специальных символов при генерации пароля.
  */
+//TODO синглтон с помощью DI
 public class PasswordGenerator {
     private static PasswordGenerator instance;
-    private static final String LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
-    private static final String UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String DIGITS = "0123456789";
+    //TODO встроееная библиотек букв
+    private static final String LOWERCASE = IntStream.rangeClosed('a', 'z').mapToObj(c -> String.valueOf((char) c)).collect(Collectors.joining());
+    private static final String UPPERCASE = IntStream.rangeClosed('A', 'Z').mapToObj(c -> String.valueOf((char) c)).collect(Collectors.joining());
+    private static final String DIGITS = IntStream.rangeClosed('0', '9').mapToObj(c -> String.valueOf((char) c)).collect(Collectors.joining());
     private static final String SPECIAL_CHARACTERS = "!@#$%^&*()-_+=<>?";
 
-    private boolean useLower = false;
-    private boolean useUpper = false;
-    private boolean useDigits = false;
-    private boolean useSpecialCharacters = false;
 
     /**
      * Приватный конструктор, чтобы предотвратить создание экземпляров извне.
@@ -33,94 +36,43 @@ public class PasswordGenerator {
         return instance;
     }
 
-    /**
-     * Включает использование символов нижнего регистра при генерации пароля.
-     *
-     * @return Объект `PasswordGenerator` с включенным использованием символов нижнего регистра.
-     */
-    public PasswordGenerator useLower() {
-        this.useLower = true;
-        return this;
-    }
 
-    /**
-     * Включает использование символов верхнего регистра при генерации пароля.
-     *
-     * @return Объект `PasswordGenerator` с включенным использованием символов верхнего регистра.
-     */
-    public PasswordGenerator useUpper() {
-        this.useUpper = true;
-        return this;
-    }
-
-    /**
-     * Включает использование цифр при генерации пароля.
-     *
-     * @return Объект `PasswordGenerator` с включенным использованием цифр.
-     */
-    public PasswordGenerator useDigits() {
-        this.useDigits = true;
-        return this;
-    }
-
-    /**
-     * Включает использование специальных символов при генерации пароля.
-     *
-     * @return Объект `PasswordGenerator` с включенным использованием специальных символов.
-     */
-    public PasswordGenerator useSpecialCharacters() {
-        this.useSpecialCharacters = true;
-        return this;
-    }
 
     /**
      * Генерирует пароль заданной длины с учетом настроек.
      *
-     * @param length Длина генерируемого пароля.
+     * @param passwordSettings настройки пароля
      * @return Сгенерированный пароль.
      */
-    public String build(int length) {
-        if ((length <= 0) || (!useLower && !useUpper && !useDigits && !useSpecialCharacters)) {
-            resetFlags();
+    public String build(PasswordSettings passwordSettings) {
+        if (passwordSettings == null) {
             return "";
         }
 
-        StringBuilder password = new StringBuilder(length);
+        StringBuilder password = new StringBuilder(passwordSettings.getPasswordLength());
         Random random = new Random(System.nanoTime());
 
         List<String> charCategories = new ArrayList<>(4);
-        if (useLower) {
+        if (passwordSettings.isUseLower()) {
             charCategories.add(LOWERCASE);
         }
-        if (useUpper) {
+        if (passwordSettings.isUseUpper()) {
             charCategories.add(UPPERCASE);
         }
-        if (useDigits) {
+        if (passwordSettings.isUseDigits()) {
             charCategories.add(DIGITS);
         }
-        if (useSpecialCharacters) {
+        if (passwordSettings.isUseSpecialCharacters()) {
             charCategories.add(SPECIAL_CHARACTERS);
         }
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < passwordSettings.getPasswordLength(); i++) {
             String charCategory = charCategories.get(random.nextInt(charCategories.size()));
             int position = random.nextInt(charCategory.length());
             password.append(charCategory.charAt(position));
         }
 
-        resetFlags();
         return new String(password);
-    }
-
-    /**
-     * Сбрасывает все установленные флаги использования символов (нижний регистр, верхний регистр,
-     * цифры, специальные символы) к исходному состоянию.
-     */
-    private void resetFlags() {
-        this.useLower = false;
-        this.useUpper = false;
-        this.useDigits = false;
-        this.useSpecialCharacters = false;
     }
 }
 
