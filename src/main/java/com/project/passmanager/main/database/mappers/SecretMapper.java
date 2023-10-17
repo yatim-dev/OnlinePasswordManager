@@ -1,5 +1,6 @@
-package com.project.passmanager.main.database.models;
+package com.project.passmanager.main.database.mappers;
 
+import com.project.passmanager.main.database.models.SecretEntity;
 import com.project.passmanager.main.domain.models.Secret;
 
 import java.util.List;

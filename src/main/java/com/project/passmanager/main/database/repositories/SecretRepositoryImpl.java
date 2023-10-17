@@ -1,7 +1,7 @@
 package com.project.passmanager.main.database.repositories;
 
 import com.project.passmanager.main.database.core.InMemoryCacheSecrets;
-import com.project.passmanager.main.database.models.SecretMapper;
+import com.project.passmanager.main.database.mappers.SecretMapper;
 import com.project.passmanager.main.domain.repositories.ISecretRepository;
 import com.project.passmanager.main.domain.models.Secret;
 import org.springframework.stereotype.Component;
