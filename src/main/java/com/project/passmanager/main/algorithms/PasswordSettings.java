@@ -7,6 +7,14 @@ public class PasswordSettings {
     private boolean useDigits;
     private boolean useSpecialCharacters;
 
+    public PasswordSettings(int passwordLength, boolean useLower, boolean useUpper, boolean useDigits, boolean useSpecialCharacters) {
+        this.passwordLength = passwordLength;
+        this.useLower = useLower;
+        this.useUpper = useUpper;
+        this.useDigits = useDigits;
+        this.useSpecialCharacters = useSpecialCharacters;
+    }
+
     public int getPasswordLength() {
         return passwordLength;
     }
@@ -25,51 +33,5 @@ public class PasswordSettings {
 
     public boolean isUseSpecialCharacters() {
         return useSpecialCharacters;
-    }
-
-    /**
-     * Включает использование символов нижнего регистра при генерации пароля.
-     *
-     * @return Объект `PasswordGenerator` с включенным использованием символов нижнего регистра.
-     */
-
-    public PasswordSettings useLower() {
-        this.useLower = true;
-        return this;
-    }
-
-    /**
-     * Включает использование символов верхнего регистра при генерации пароля.
-     *
-     * @return Объект `PasswordGenerator` с включенным использованием символов верхнего регистра.
-     */
-    public PasswordSettings useUpper() {
-        this.useUpper = true;
-        return this;
-    }
-
-    /**
-     * Включает использование цифр при генерации пароля.
-     *
-     * @return Объект `PasswordGenerator` с включенным использованием цифр.
-     */
-    public PasswordSettings useDigits() {
-        this.useDigits = true;
-        return this;
-    }
-
-    /**
-     * Включает использование специальных символов при генерации пароля.
-     *
-     * @return Объект `PasswordGenerator` с включенным использованием специальных символов.
-     */
-    public PasswordSettings useSpecialCharacters() {
-        this.useSpecialCharacters = true;
-        return this;
-    }
-
-    public PasswordSettings passwordLength(int passwordLength) {
-        this.passwordLength = passwordLength;
-        return this;
     }
 }

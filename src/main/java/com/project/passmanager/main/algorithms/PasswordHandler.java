@@ -1,4 +1,4 @@
-package com.project.passmanager.main.Entity;
+package com.project.passmanager.main.algorithms;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.mindrot.jbcrypt.BCrypt;
@@ -56,5 +56,4 @@ public class PasswordHandler implements IPasswordHandler {
     public Boolean isMatch(String candidate, String hashed) {
         return BCrypt.checkpw(candidate, hashed);
     }
-
 }

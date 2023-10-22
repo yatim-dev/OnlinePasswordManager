@@ -1,9 +1,8 @@
-package com.project.passmanager.main.Entity;
+package com.project.passmanager.main.algorithms;
 
 public interface IPasswordHandler {
 
     String encrypt(String password);
-
 
     Boolean isMatch(String candidate, String hashed);
 }

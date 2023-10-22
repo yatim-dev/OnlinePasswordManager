@@ -6,9 +6,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.apache.commons.lang3.CharUtils;
-
-
 /**
  * Singleton класс `PasswordGenerator` предоставляет возможность генерировать пароли с разными параметрами.
  * Пользователь может настроить включение/выключение использования нижнего регистра, верхнего регистра,
@@ -35,7 +32,6 @@ public class PasswordGenerator {
         }
         return instance;
     }
-
 
 
     /**
