@@ -2,10 +2,7 @@ package com.project.passmanager.main.database.core;
 
 import com.project.passmanager.main.database.models.SecretEntity;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class InMemoryCacheSecrets {
     private static final Map<String, SecretEntity> secrets = new HashMap<>();
@@ -19,8 +16,8 @@ public class InMemoryCacheSecrets {
         secrets.put(id3, new SecretEntity(id3, "password for box"));
     }
 
-    public static Collection<SecretEntity> getSecrets() {
-        return secrets.values();
+    public static List<SecretEntity> getSecrets() {
+        return new ArrayList<>(secrets.values());
     }
 
     public static SecretEntity getSecretById(String id) {
