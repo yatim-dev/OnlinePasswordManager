@@ -1,5 +1,5 @@
 package com.project.passmanager.main.algorithms.PasswordCheckerCommand;
 
-public interface IPasswordCheckerCommand {
+public interface IPasswordCheckCommand {
     int execute(String password);
 }

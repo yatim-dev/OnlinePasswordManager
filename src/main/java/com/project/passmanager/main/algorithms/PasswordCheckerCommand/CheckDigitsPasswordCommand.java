@@ -1,6 +1,6 @@
 package com.project.passmanager.main.algorithms.PasswordCheckerCommand;
 
-public class CheckingDigitsPasswordCommand implements IPasswordCheckerCommand {
+public class CheckDigitsPasswordCommand implements IPasswordCheckCommand {
 
     /**
      * Проверяет, содержит ли пароль цифры.

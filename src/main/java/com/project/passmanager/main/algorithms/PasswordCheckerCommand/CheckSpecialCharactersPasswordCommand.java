@@ -1,6 +1,6 @@
 package com.project.passmanager.main.algorithms.PasswordCheckerCommand;
 
-public class CheckingSpecialCharactersPasswordCommand implements IPasswordCheckerCommand {
+public class CheckSpecialCharactersPasswordCommand implements IPasswordCheckCommand {
     /**
      * Проверяет, содержит ли пароль специальные символы.
      *

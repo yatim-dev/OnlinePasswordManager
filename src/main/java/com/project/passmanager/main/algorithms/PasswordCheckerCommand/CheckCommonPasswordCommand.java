@@ -1,6 +1,6 @@
 package com.project.passmanager.main.algorithms.PasswordCheckerCommand;
 
-public class CheckingCommonPasswordCommand implements IPasswordCheckerCommand {
+public class CheckCommonPasswordCommand implements IPasswordCheckCommand {
 
     /**
      * Проверяет, содержит ли пароль стандартные слова.

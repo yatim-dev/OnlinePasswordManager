@@ -1,6 +1,6 @@
 package com.project.passmanager.main.algorithms.PasswordCheckerCommand;
 
-public class CheckingLowerCaseAndUpperCasePasswordCommand implements IPasswordCheckerCommand {
+public class CheckLowerCaseAndUpperCasePasswordCommand implements IPasswordCheckCommand {
 
     /**
      * Проверяет, содержит ли пароль буквы в верхнем и нижнем регистре.

@@ -1,9 +1,9 @@
 package com.project.passmanager.main.algorithms.PasswordCheckerCommand;
 
-public class CheckingMediumLenCommand implements IPasswordCheckerCommand {
+public class CheckMinimumLengthPasswordCommand implements IPasswordCheckCommand {
     @Override
     public int execute(String password) {
-        if (password.length() >= 12) return 8;
+        if (password.length() >= 8) return 5;
         else return 0;
     }
 }
