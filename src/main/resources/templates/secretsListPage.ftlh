@@ -38,16 +38,14 @@
     <div>
         <p><a href="/spaceSecret/${space.id}" class="itemSpace">${space.name}</a></p>
     </div>
-</
-#list>
+</#list>
 </div>
 <div class="secretsDiv">
     <#list secrets as secret>
     <div>
         <p><b>${secret.name}</b> | <a href="/secret/${secret.id}">Details</a></p>
     </div>
-</
-#list>
+</#list>
 <form action="/spaceSecret/createSecret" method="get">
     <input type="submit" value="Create new Secret"/>
 </form>

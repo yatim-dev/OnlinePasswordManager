@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 @RequiredArgsConstructor
 public class SpaceSecretsPage {
     private static final String PAGE_NAME = "secretsListPage";
-
+    static final String REDIRECT_ON_PAGE = "redirect:/spaceSecret";
 
     private final SpaceSecretsService spaceSecretsService;
 

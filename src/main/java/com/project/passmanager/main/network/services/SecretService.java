@@ -11,11 +11,9 @@ public class SecretService {
     private final ISecretRepository secretRepository;
 
     public Secret getSecretById(String id) {
-        return secretRepository.getSecretById(id);
-    }
+        if (id.isBlank()) return secretRepository.getEmptySecret();
 
-    public Secret getEmptySecret() {
-        return secretRepository.getEmptySecret();
+        return secretRepository.getSecretById(id);
     }
 
     public void saveSecret(Secret secret) {
