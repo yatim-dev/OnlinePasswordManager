@@ -32,6 +32,10 @@ public class SecretController {
 
     @GetMapping("/spaceSecret/createSecret")
     public String createSecret(Model model) {
-        return secretPage.openEmptySecretPage(SpaceSecretsPage.SELECTED_SECRET_SPACE_ID, model);
+        if (!SpaceSecretsPage.SELECTED_SECRET_SPACE_ID.isBlank()) {
+            return secretPage.openEmptySecretPage(SpaceSecretsPage.SELECTED_SECRET_SPACE_ID, model);
+        } else {
+            return SpaceSecretsPage.refreshPage();
+        }
     }
 }

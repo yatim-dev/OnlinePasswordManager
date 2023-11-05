@@ -40,12 +40,22 @@ public class SpaceSecretsPage {
         if (!secretSpace.getName().isBlank()) {
             spaceSecretsService.saveSecretSpace(secretSpace);
         }
+        if (spaceSecretsService.getSecretSpaces().size() == 1) {
+            SELECTED_SECRET_SPACE_ID = secretSpace.getId();
+        }
         return refreshPage();
     }
 
     public String deleteSecretSpace(String secretSpaceId) {
         spaceSecretsService.deleteSecretSpace(secretSpaceId);
-        SELECTED_SECRET_SPACE_ID = InMemoryCacheSecretSpace.getIdDefaultSecretSpace();
+
+        var spaces = spaceSecretsService.getSecretSpaces();
+        if (spaces.isEmpty()) {
+            SELECTED_SECRET_SPACE_ID = "";
+        } else {
+            SELECTED_SECRET_SPACE_ID = spaces.get(0).getId();
+        }
+
         return refreshPage();
     }
 }
