@@ -1,38 +1,30 @@
 package com.project.passmanager.main.database.core;
 
-import com.project.passmanager.main.database.mappers.SecretMapper;
-import com.project.passmanager.main.domain.models.SecretSpace;
+import com.project.passmanager.main.database.models.SecretSpaceEntity;
 
 import java.util.*;
 
 public class InMemoryCacheSecretSpace {
 
-    private static final SecretSpace defaultSecretSpace = new SecretSpace(
+    private static final SecretSpaceEntity defaultSecretSpace = new SecretSpaceEntity(
             UUID.randomUUID().toString(),
-            "defaultSpace",
-            new ArrayList<>()
+            "defaultSpace"
     );
-    private static final Map<String, SecretSpace> spaces = new HashMap<>();
+    private static final Map<String, SecretSpaceEntity> spaces = new HashMap<>();
     static {
         String id2 = UUID.randomUUID().toString();
         String id3 = UUID.randomUUID().toString();
 
         spaces.put(defaultSecretSpace.getId(), defaultSecretSpace);
-        spaces.put(id2, new SecretSpace(id2, "space2", new ArrayList<>()));
-        spaces.put(id3, new SecretSpace(id3, "space3", new ArrayList<>()));
+        spaces.put(id2, new SecretSpaceEntity(id2, "space2"));
+        spaces.put(id3, new SecretSpaceEntity(id3, "space3"));
     }
 
     public static String getIdDefaultSecretSpace() {
         return defaultSecretSpace.getId();
     }
 
-    public static List<SecretSpace> getSecretSpaces() {
+    public static List<SecretSpaceEntity> getSecretSpaces() {
         return new ArrayList<>(spaces.values());
-    }
-
-    public static SecretSpace getSecretSpaceById(String id) {
-        var space = spaces.get(id);
-        space.setSecrets(SecretMapper.transformToSecrets(InMemoryCacheSecrets.getSecretsBySecretSpaceId(id)));
-        return space;
     }
 }

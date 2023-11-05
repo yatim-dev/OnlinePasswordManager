@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface ISpaceSecretsRepository {
     List<SecretSpace> getSecretSpaces();
-
-    SecretSpace getSecretSpaceById(String id);
 }

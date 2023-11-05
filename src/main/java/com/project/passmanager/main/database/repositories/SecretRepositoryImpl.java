@@ -17,6 +17,11 @@ public class SecretRepositoryImpl implements ISecretRepository {
     }
 
     @Override
+    public List<Secret> getSecretsBySecretSpaceId(String secretSpaceId) {
+        return SecretMapper.transformToSecrets(InMemoryCacheSecrets.getSecretsBySecretSpaceId(secretSpaceId));
+    }
+
+    @Override
     public Secret getSecretById(String id) {
         return SecretMapper.transform(InMemoryCacheSecrets.getSecretById(id));
     }

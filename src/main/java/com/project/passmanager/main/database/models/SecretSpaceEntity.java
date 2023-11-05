@@ -1,11 +1,11 @@
-package com.project.passmanager.main.domain.models;
+package com.project.passmanager.main.database.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SecretSpace {
+public class SecretSpaceEntity {
     private String id;
     private String name;
 }

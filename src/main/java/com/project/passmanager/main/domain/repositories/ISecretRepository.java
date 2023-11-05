@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ISecretRepository {
     List<Secret> getSecrets();
+    List<Secret> getSecretsBySecretSpaceId(String secretSpaceId);
     Secret getSecretById(String id);
     Secret getEmptySecret(String secretSpaceId);
     void saveSecret(Secret secret);
