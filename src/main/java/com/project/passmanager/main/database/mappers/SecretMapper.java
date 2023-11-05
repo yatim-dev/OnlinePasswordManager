@@ -9,6 +9,7 @@ public class SecretMapper {
     public static SecretEntity transform(Secret secret) {
         return new SecretEntity(
                 secret.getId(),
+                secret.getSecretSpaceId(),
                 secret.getName()
         );
     }
@@ -23,6 +24,7 @@ public class SecretMapper {
     public static Secret transform(SecretEntity secretEntity) {
         return new Secret(
                 secretEntity.getId(),
+                secretEntity.getSecretSpaceId(),
                 secretEntity.getName()
         );
     }

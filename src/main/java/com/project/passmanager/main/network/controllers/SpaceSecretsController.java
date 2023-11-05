@@ -19,6 +19,7 @@ public class SpaceSecretsController {
 
     @GetMapping("/spaceSecret/{spaceId}")
     public String getSpaceSecretPage(@PathVariable String spaceId, Model model) {
+        SpaceSecretsPage.SELECTED_SECRET_SPACE_ID = spaceId;
         return spaceSecretsPage.openSecretsListPage(spaceId, model);
     }
 }

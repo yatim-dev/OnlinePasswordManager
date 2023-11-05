@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 public class SecretService {
     private final ISecretRepository secretRepository;
 
-    public Secret getSecretById(String id) {
-        if (id.isBlank()) return secretRepository.getEmptySecret();
+    public Secret createEmptySecret(String secretSpaceId) {
+        return secretRepository.getEmptySecret(secretSpaceId);
+    }
 
+    public Secret getSecretById(String id) {
         return secretRepository.getSecretById(id);
     }
 

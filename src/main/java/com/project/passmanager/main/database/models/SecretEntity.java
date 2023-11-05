@@ -7,5 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class SecretEntity {
     private String id;
+    private String secretSpaceId;
     private String name;
 }

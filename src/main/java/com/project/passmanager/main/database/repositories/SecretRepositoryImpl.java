@@ -2,8 +2,8 @@ package com.project.passmanager.main.database.repositories;
 
 import com.project.passmanager.main.database.core.InMemoryCacheSecrets;
 import com.project.passmanager.main.database.mappers.SecretMapper;
-import com.project.passmanager.main.domain.repositories.ISecretRepository;
 import com.project.passmanager.main.domain.models.Secret;
+import com.project.passmanager.main.domain.repositories.ISecretRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -22,8 +22,8 @@ public class SecretRepositoryImpl implements ISecretRepository {
     }
 
     @Override
-    public Secret getEmptySecret() {
-        return SecretMapper.transform(InMemoryCacheSecrets.getEmptySecret());
+    public Secret getEmptySecret(String secretSpaceId) {
+        return SecretMapper.transform(InMemoryCacheSecrets.getEmptySecret(secretSpaceId));
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 public interface ISecretRepository {
     List<Secret> getSecrets();
     Secret getSecretById(String id);
-    Secret getEmptySecret();
+    Secret getEmptySecret(String secretSpaceId);
     void saveSecret(Secret secret);
     void deleteSecret(String id);
 }

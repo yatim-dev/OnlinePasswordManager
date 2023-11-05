@@ -19,18 +19,27 @@ public class SecretPage {
         return PAGE_NAME;
     }
 
-    public String openEmptySecretPage(Model model) {
-        return openSecretPage("", model);
+    public String openEmptySecretPage(@NonNull String secretSpaceId, Model model) {
+        model.addAttribute("secret", secretService.createEmptySecret(secretSpaceId));
+        return PAGE_NAME;
     }
 
-    public String saveSecretAndOpenSpaceSecretPage(@NonNull String secretId, Secret secret) {
+    public String saveSecretAndOpenSpaceSecretPage(
+            @NonNull String secretSpaceId,
+            @NonNull String secretId,
+            Secret secret
+    ) {
         secret.setId(secretId);
+        secret.setSecretSpaceId(secretSpaceId);
         secretService.saveSecret(secret);
-        return SpaceSecretsPage.REDIRECT_ON_PAGE;
+        return SpaceSecretsPage.redirectOnSelectedSpaceSecretsPage(secretSpaceId);
     }
 
-    public String deleteSecretAndOpenSpaceSecretPage(@NonNull String secretId) {
+    public String deleteSecretAndOpenSpaceSecretPage(
+            @NonNull String secretSpaceId,
+            @NonNull String secretId
+    ) {
         secretService.deleteSecret(secretId);
-        return SpaceSecretsPage.REDIRECT_ON_PAGE;
+        return SpaceSecretsPage.redirectOnSelectedSpaceSecretsPage(secretSpaceId);
     }
 }
