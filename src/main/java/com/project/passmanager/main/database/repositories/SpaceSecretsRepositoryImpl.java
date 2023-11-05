@@ -24,4 +24,9 @@ public class SpaceSecretsRepositoryImpl implements ISpaceSecretsRepository {
     public void saveSecretSpace(SecretSpace secretSpace) {
         InMemoryCacheSecretSpace.saveSecretSpace(SecretSpaceMapper.transform(secretSpace));
     }
+
+    @Override
+    public void deleteSecretSpace(String secretSpaceId) {
+        InMemoryCacheSecretSpace.deleteSecretSpace(secretSpaceId);
+    }
 }

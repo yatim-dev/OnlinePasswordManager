@@ -7,4 +7,5 @@ import java.util.List;
 public interface ISpaceSecretsRepository {
     List<SecretSpace> getSecretSpaces();
     void saveSecretSpace(SecretSpace secretSpace);
+    void deleteSecretSpace(String secretSpaceId);
 }

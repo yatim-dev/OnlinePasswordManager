@@ -37,7 +37,14 @@ public class SpaceSecretsPage {
     }
 
     public String saveSecretSpace(SecretSpace secretSpace) {
-        spaceSecretsService.saveSecretSpace(secretSpace);
+        if (!secretSpace.getName().isBlank()) {
+            spaceSecretsService.saveSecretSpace(secretSpace);
+        }
+        return refreshPage();
+    }
+
+    public String deleteSecretSpace(String secretSpaceId) {
+        spaceSecretsService.deleteSecretSpace(secretSpaceId);
         return refreshPage();
     }
 }

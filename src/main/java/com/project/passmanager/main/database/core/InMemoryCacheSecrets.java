@@ -31,5 +31,16 @@ public class InMemoryCacheSecrets {
         secrets.put(secret.getId(), secret);
     }
 
-    public static void deleteSecret(String id) { secrets.remove(id); }
+    public static void deleteSecret(String id) {
+        secrets.remove(id);
+        System.out.println("dssd");
+    }
+
+    public static void deleteAllSecretsBySecretSpaceId(String secretSpaceId) {
+        for (SecretEntity secret : secrets.values()) {
+            if (secret.getSecretSpaceId().equals(secretSpaceId)) {
+                deleteSecret(secret.getId());
+            }
+        }
+    }
 }

@@ -25,4 +25,8 @@ public class SpaceSecretsService {
         secretSpace.setId(UUID.randomUUID().toString());
         spaceSecretsRepository.saveSecretSpace(secretSpace);
     }
+
+    public void deleteSecretSpace(String secretSpaceId) {
+        spaceSecretsRepository.deleteSecretSpace(secretSpaceId);
+    }
 }

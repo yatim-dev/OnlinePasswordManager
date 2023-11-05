@@ -31,4 +31,9 @@ public class InMemoryCacheSecretSpace {
     public static void saveSecretSpace(SecretSpaceEntity secretSpace) {
         spaces.put(secretSpace.getId(), secretSpace);
     }
+
+    public static void deleteSecretSpace(String secretSpaceId) {
+        InMemoryCacheSecrets.deleteAllSecretsBySecretSpaceId(secretSpaceId);
+        spaces.remove(secretSpaceId);
+    }
 }

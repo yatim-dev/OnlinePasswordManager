@@ -29,4 +29,9 @@ public class SpaceSecretsController {
     public String saveSecretSpace(SecretSpace secretSpace) {
         return spaceSecretsPage.saveSecretSpace(secretSpace);
     }
+
+    @GetMapping("/spaceSecret/deleteSecretSpace/{secretSpaceId}")
+    public String deleteSecretSpace(@PathVariable String secretSpaceId) {
+        return spaceSecretsPage.deleteSecretSpace(secretSpaceId);
+    }
 }

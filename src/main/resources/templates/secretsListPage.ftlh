@@ -36,7 +36,7 @@
 <div class="spacesDiv">
     <#list spaces as space>
     <div>
-        <p><a href="/spaceSecret/${space.id}" class="itemSpace">${space.name}</a></p>
+        <p><a href="/spaceSecret/${space.id}" class="itemSpace">${space.name}</a>| <a href="/spaceSecret/deleteSecretSpace/${space.id}">Delete</a></p>
     </div>
 </#list>
 <form action="/spaceSecret/saveSecretSpace" method="post">
