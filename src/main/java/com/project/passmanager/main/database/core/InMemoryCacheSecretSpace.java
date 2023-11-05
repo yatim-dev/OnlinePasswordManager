@@ -27,4 +27,8 @@ public class InMemoryCacheSecretSpace {
     public static List<SecretSpaceEntity> getSecretSpaces() {
         return new ArrayList<>(spaces.values());
     }
+
+    public static void saveSecretSpace(SecretSpaceEntity secretSpace) {
+        spaces.put(secretSpace.getId(), secretSpace);
+    }
 }

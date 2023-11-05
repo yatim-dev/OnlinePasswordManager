@@ -1,6 +1,7 @@
 package com.project.passmanager.main.network.pages;
 
 import com.project.passmanager.main.database.core.InMemoryCacheSecretSpace;
+import com.project.passmanager.main.domain.models.SecretSpace;
 import com.project.passmanager.main.network.services.SecretService;
 import com.project.passmanager.main.network.services.SpaceSecretsService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,10 @@ public class SpaceSecretsPage {
         return String.format("redirect:/spaceSecret/%s", secretSpaceId);
     }
 
+    public static String refreshPage() {
+        return "redirect:/spaceSecret";
+    }
+
     public String openSecretsListPage(@NonNull String spaceId, Model model) {
         model.addAttribute("spaces", spaceSecretsService.getSecretSpaces());
         model.addAttribute("secrets", secretService.getSecretsBySecretSpaceId(spaceId));
@@ -29,5 +34,10 @@ public class SpaceSecretsPage {
 
     public String openEmptySecretsListPage(Model model) {
         return openSecretsListPage("", model);
+    }
+
+    public String saveSecretSpace(SecretSpace secretSpace) {
+        spaceSecretsService.saveSecretSpace(secretSpace);
+        return refreshPage();
     }
 }

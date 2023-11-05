@@ -39,6 +39,10 @@
         <p><a href="/spaceSecret/${space.id}" class="itemSpace">${space.name}</a></p>
     </div>
 </#list>
+<form action="/spaceSecret/saveSecretSpace" method="post">
+    Secret space name: <input type="text" name="name"/><br><br>
+    <input type="submit" value="create secret space">
+</form>
 </div>
 <div class="secretsDiv">
     <#list secrets as secret>

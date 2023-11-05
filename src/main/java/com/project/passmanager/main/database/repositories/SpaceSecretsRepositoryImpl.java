@@ -19,4 +19,9 @@ public class SpaceSecretsRepositoryImpl implements ISpaceSecretsRepository {
                 .map(SecretSpaceMapper::transform)
                 .toList();
     }
+
+    @Override
+    public void saveSecretSpace(SecretSpace secretSpace) {
+        InMemoryCacheSecretSpace.saveSecretSpace(SecretSpaceMapper.transform(secretSpace));
+    }
 }
