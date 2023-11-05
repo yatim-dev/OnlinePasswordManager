@@ -45,6 +45,7 @@ public class SpaceSecretsPage {
 
     public String deleteSecretSpace(String secretSpaceId) {
         spaceSecretsService.deleteSecretSpace(secretSpaceId);
+        SELECTED_SECRET_SPACE_ID = InMemoryCacheSecretSpace.getIdDefaultSecretSpace();
         return refreshPage();
     }
 }

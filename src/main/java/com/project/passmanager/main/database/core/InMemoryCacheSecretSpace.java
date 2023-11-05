@@ -12,12 +12,7 @@ public class InMemoryCacheSecretSpace {
     );
     private static final Map<String, SecretSpaceEntity> spaces = new HashMap<>();
     static {
-        String id2 = UUID.randomUUID().toString();
-        String id3 = UUID.randomUUID().toString();
-
         spaces.put(defaultSecretSpace.getId(), defaultSecretSpace);
-        spaces.put(id2, new SecretSpaceEntity(id2, "space2"));
-        spaces.put(id3, new SecretSpaceEntity(id3, "space3"));
     }
 
     public static String getIdDefaultSecretSpace() {

@@ -24,7 +24,14 @@ public class InMemoryCacheSecrets {
     }
 
     public static SecretEntity getEmptySecret(String secretSpaceId) {
-        return new SecretEntity(UUID.randomUUID().toString(), secretSpaceId, "");
+        return new SecretEntity(
+                UUID.randomUUID().toString(),
+                secretSpaceId,
+                "",
+                "",
+                "",
+                ""
+        );
     }
 
     public static void putSecret(SecretEntity secret) {
@@ -37,7 +44,7 @@ public class InMemoryCacheSecrets {
     }
 
     public static void deleteAllSecretsBySecretSpaceId(String secretSpaceId) {
-        for (SecretEntity secret : secrets.values()) {
+        for (SecretEntity secret : getSecrets()) {
             if (secret.getSecretSpaceId().equals(secretSpaceId)) {
                 deleteSecret(secret.getId());
             }

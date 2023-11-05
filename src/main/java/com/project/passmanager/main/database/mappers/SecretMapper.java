@@ -10,7 +10,10 @@ public class SecretMapper {
         return new SecretEntity(
                 secret.getId(),
                 secret.getSecretSpaceId(),
-                secret.getName()
+                secret.getName(),
+                secret.getLogin(),
+                secret.getPassword(),
+                secret.getNote()
         );
     }
 
@@ -25,7 +28,10 @@ public class SecretMapper {
         return new Secret(
                 secretEntity.getId(),
                 secretEntity.getSecretSpaceId(),
-                secretEntity.getName()
+                secretEntity.getName(),
+                secretEntity.getLogin(),
+                secretEntity.getPassword(),
+                secretEntity.getNote()
         );
     }
 
