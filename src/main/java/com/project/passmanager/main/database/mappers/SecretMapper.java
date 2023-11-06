@@ -5,6 +5,9 @@ import com.project.passmanager.main.domain.models.Secret;
 
 import java.util.List;
 
+/**
+ * маппинг модели Secret слоев domain и database
+ * */
 public class SecretMapper {
     public static SecretEntity transform(Secret secret) {
         return new SecretEntity(

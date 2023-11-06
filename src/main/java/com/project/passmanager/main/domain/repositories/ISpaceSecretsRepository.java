@@ -4,6 +4,9 @@ import com.project.passmanager.main.domain.models.SecretSpace;
 
 import java.util.List;
 
+/**
+ * Репозторий для работы с моделью SecretSpace
+ * */
 public interface ISpaceSecretsRepository {
     List<SecretSpace> getSecretSpaces();
     void saveSecretSpace(SecretSpace secretSpace);

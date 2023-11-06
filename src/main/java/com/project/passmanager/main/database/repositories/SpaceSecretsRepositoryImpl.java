@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Реализация репозтория для работы с моделью SpaceSecrets
+ * */
 @Component
 public class SpaceSecretsRepositoryImpl implements ISpaceSecretsRepository {
 

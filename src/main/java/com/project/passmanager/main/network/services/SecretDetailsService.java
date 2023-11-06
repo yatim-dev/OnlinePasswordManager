@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Сущность для работы с иточниками данных для страницы подробной информации о секрете
+ * */
 @Service
 @RequiredArgsConstructor
-public class SecretService {
+public class SecretDetailsService {
     private final ISecretRepository secretRepository;
 
     public List<Secret> getSecretsBySecretSpaceId(@NonNull String secretSpaceId) {

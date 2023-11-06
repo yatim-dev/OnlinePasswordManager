@@ -4,6 +4,9 @@ import com.project.passmanager.main.database.models.SecretEntity;
 
 import java.util.*;
 
+/**
+ * Для хранения сущностей SecretEntity пока нет БД
+ * */
 public class InMemoryCacheSecrets {
     private static final Map<String, SecretEntity> secrets = new HashMap<>();
 

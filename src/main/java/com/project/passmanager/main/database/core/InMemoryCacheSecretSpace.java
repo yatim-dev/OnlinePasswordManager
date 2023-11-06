@@ -4,6 +4,9 @@ import com.project.passmanager.main.database.models.SecretSpaceEntity;
 
 import java.util.*;
 
+/**
+ * Для хранения сущностей SecretSpaceEntity пока нет БД
+ * */
 public class InMemoryCacheSecretSpace {
 
     private static final SecretSpaceEntity defaultSecretSpace = new SecretSpaceEntity(

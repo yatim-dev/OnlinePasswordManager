@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Реализация репозтория для работы с моделью Secret
+ * */
 @Component
 public class SecretRepositoryImpl implements ISecretRepository {
     @Override

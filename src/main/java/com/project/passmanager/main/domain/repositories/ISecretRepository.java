@@ -4,6 +4,9 @@ import com.project.passmanager.main.domain.models.Secret;
 
 import java.util.List;
 
+/**
+ * Репозторий для работы с моделью Secret
+ * */
 public interface ISecretRepository {
     List<Secret> getSecrets();
     List<Secret> getSecretsBySecretSpaceId(String secretSpaceId);
