@@ -1,14 +1,32 @@
 package com.project.passmanager.main.database.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 /**
  * Модель пространства для секретов для database слоя
  * */
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "secret_spaces")
+@ToString
+@NoArgsConstructor
 public class SecretSpaceEntity {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserEntity user;
+
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
+
+    public SecretSpaceEntity(UserEntity user, String name) {
+        this.user = user;
+        this.name = name;
+    }
 }
