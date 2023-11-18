@@ -12,6 +12,8 @@ import lombok.*;
 @Table(name = "secret_spaces")
 @ToString
 @NoArgsConstructor
+@EqualsAndHashCode
+@AllArgsConstructor
 public class SecretSpaceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

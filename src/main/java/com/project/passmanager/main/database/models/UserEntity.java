@@ -8,6 +8,7 @@ import lombok.*;
 @Entity
 @Table(name = "users")
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 public class UserEntity {
     @Id

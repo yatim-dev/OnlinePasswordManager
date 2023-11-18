@@ -54,9 +54,11 @@ public class UsersDAO {
         }
     }
 
+    //TODO: id сбивается
     public void updateUser(UserEntity user) throws TransactionException {
         deleteUser(user);
         putUser(user);
+        //session.refresh()
     }
 
     public void deleteUser(UserEntity user) throws TransactionException {
