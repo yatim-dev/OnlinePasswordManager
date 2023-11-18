@@ -2,6 +2,7 @@ package com.project.passmanager.main.database.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -13,8 +14,7 @@ import lombok.*;
 public class UserEntity {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id = UUID.randomUUID().toString();
 
     @Column(name = "login", unique = true, nullable = false)
     private String login;

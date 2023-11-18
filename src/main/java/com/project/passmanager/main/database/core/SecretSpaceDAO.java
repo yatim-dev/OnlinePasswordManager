@@ -35,7 +35,7 @@ public class SecretSpaceDAO {
         }
     }
 
-    public void deleteSecretSpaceById(UserEntity user, Long secretSpaceId) throws TransactionException {
+    public void deleteSecretSpaceById(UserEntity user, String secretSpaceId) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             var secretSpace = session.find(SecretSpaceEntity.class, secretSpaceId);

@@ -27,19 +27,16 @@ public class SecretsDAO {
 
     }
 
-    public SecretEntity getSecretById(Long secretId) throws TransactionException{
+    public SecretEntity getSecretById(String secretId) throws TransactionException{
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            var secret = session.find(SecretEntity.class, secretId.toString());
+            var secret = session.find(SecretEntity.class, secretId);
             session.getTransaction().commit();
             if (secret != null)
                 return secret;
             else
                 throw new TransactionException("");
-        } catch (Exception e){
-            e.printStackTrace();
         }
-        return null;
     }
 
     public void putSecret(SecretSpaceEntity secretSpace, SecretEntity secret) throws TransactionException {
@@ -52,10 +49,10 @@ public class SecretsDAO {
         }
     }
 
-    public void deleteSecretById(Long secretId) throws TransactionException {
+    public void deleteSecretById(String secretId) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            var secret = session.find(SecretEntity.class, secretId.toString());
+            var secret = session.find(SecretEntity.class, secretId);
             if (secret != null)
                 session.remove(secret);
             session.getTransaction().commit();

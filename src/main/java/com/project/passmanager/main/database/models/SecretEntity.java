@@ -3,6 +3,8 @@ package com.project.passmanager.main.database.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 /**
  * Модель секркета для database слоя
  * */
@@ -16,9 +18,8 @@ import lombok.*;
 @AllArgsConstructor
 public class SecretEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     @ManyToOne
     @JoinColumn(name = "secret_space_id", referencedColumnName = "id")

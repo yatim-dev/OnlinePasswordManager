@@ -24,7 +24,7 @@ public class UsersDAO {
         }
     }
 
-    public UserEntity getUserById(Long userId) throws TransactionException {
+    public UserEntity getUserById(String userId) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             Query<UserEntity> query = session.createQuery("FROM UserEntity WHERE id = :userId", UserEntity.class);
