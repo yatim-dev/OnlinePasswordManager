@@ -32,22 +32,28 @@ public class UsersDAO {
     public UserEntity getUserById(String userId) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Query<UserEntity> query = session.createQuery("FROM UserEntity WHERE id = :userId", UserEntity.class);
-            query.setParameter("userId", userId);
-            List<UserEntity> users = query.getResultList();
+            var user = session.createQuery(
+                    "FROM UserEntity WHERE id = :userId",
+                    UserEntity.class
+            )
+                    .setParameter("userId", userId)
+                    .uniqueResult();
             session.getTransaction().commit();
-            return users.get(0);
+            return user;
         }
     }
 
     public UserEntity getUserByLogin(String login) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Query<UserEntity> query = session.createQuery("SELECT u FROM UserEntity u WHERE u.login = :login", UserEntity.class);
-            query.setParameter("login", login);
-            List<UserEntity> users = query.getResultList();
+            var user = session.createQuery(
+                    "SELECT u FROM UserEntity u WHERE u.login = :login",
+                    UserEntity.class
+            )
+                    .setParameter("login", login)
+                    .uniqueResult();
             session.getTransaction().commit();
-            return users.get(0);
+            return user;
         }
     }
 

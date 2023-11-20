@@ -37,7 +37,7 @@ public class SecretsDAO {
             if (secret != null)
                 return secret;
             else
-                throw new TransactionException("");
+                throw new TransactionException("Database query error");
         }
     }
 
@@ -64,9 +64,11 @@ public class SecretsDAO {
     public void deleteAllSecretsBySecretSpace(String FK_secretSpace) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            var secrets = session.createQuery(
+            var secrets = session
+                    .createQuery(
                             "SELECT secret FROM SecretEntity secret WHERE secret.FK_secretSpace = :secretSpace_id",
-                            SecretEntity.class)
+                            SecretEntity.class
+                    )
                     .setParameter("secretSpace_id", FK_secretSpace)
                     .getResultList();
 

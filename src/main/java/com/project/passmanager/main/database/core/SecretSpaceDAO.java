@@ -28,7 +28,8 @@ public class SecretSpaceDAO {
             session.beginTransaction();
             var secretSpaceEntities = session.createQuery(
                     "SELECT ss FROM SecretSpaceEntity ss WHERE ss.FK_user = :user_id",
-                    SecretSpaceEntity.class)
+                            SecretSpaceEntity.class
+                    )
                     .setParameter("user_id", userId)
                     .getResultList();
             session.getTransaction().commit();
