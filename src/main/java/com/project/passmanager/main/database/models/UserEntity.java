@@ -2,6 +2,7 @@ package com.project.passmanager.main.database.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.UUID;
 
 @Getter
@@ -11,6 +12,7 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity {
     @Id
     @Column(name = "id")

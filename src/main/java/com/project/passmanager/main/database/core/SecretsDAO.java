@@ -1,25 +1,27 @@
 package com.project.passmanager.main.database.core;
 
 import com.project.passmanager.main.database.models.SecretEntity;
-import com.project.passmanager.main.database.models.SecretSpaceEntity;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.TransactionException;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@AllArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class SecretsDAO {
     SessionFactory sessionFactory;
 
-    public List<SecretEntity> getSecretsBySecretSpace(SecretSpaceEntity secretSpace) throws TransactionException{
+    public List<SecretEntity> getSecretsBySecretSpaceId(String FK_secretSpace) throws TransactionException{
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             var secrets = session.createQuery(
-                            "SELECT secret FROM SecretEntity secret WHERE secret.secretSpace.id = :secretSpace_id",
+                            "SELECT secret FROM SecretEntity secret WHERE secret.FK_secretSpace = :secretSpace_id",
                             SecretEntity.class)
-                    .setParameter("secretSpace_id", secretSpace.getId())
+                    .setParameter("secretSpace_id", FK_secretSpace)
                     .getResultList();
             session.getTransaction().commit();
             return secrets;
@@ -39,10 +41,10 @@ public class SecretsDAO {
         }
     }
 
-    public void putSecret(SecretSpaceEntity secretSpace, SecretEntity secret) throws TransactionException {
+    public void putSecret(SecretEntity secret) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
 
-            secret.setSecretSpace(secretSpace);
+            secret.setFK_secretSpace(secret.getFK_secretSpace());
             session.beginTransaction();
             session.persist(secret);
             session.getTransaction().commit();
@@ -59,13 +61,13 @@ public class SecretsDAO {
         }
     }
 
-    public void deleteAllSecretsBySecretSpace(SecretSpaceEntity secretSpace) throws TransactionException {
+    public void deleteAllSecretsBySecretSpace(String FK_secretSpace) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             var secrets = session.createQuery(
-                            "SELECT secret FROM SecretEntity secret WHERE secret.secretSpace.id = :secretSpace_id",
+                            "SELECT secret FROM SecretEntity secret WHERE secret.FK_secretSpace = :secretSpace_id",
                             SecretEntity.class)
-                    .setParameter("secretSpace_id", secretSpace.getId())
+                    .setParameter("secretSpace_id", FK_secretSpace)
                     .getResultList();
 
             if (secrets != null)

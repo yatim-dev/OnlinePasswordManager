@@ -21,9 +21,8 @@ public class SecretEntity {
     @Column(name = "id")
     private String id = UUID.randomUUID().toString();
 
-    @ManyToOne
-    @JoinColumn(name = "secret_space_id", referencedColumnName = "id")
-    private SecretSpaceEntity secretSpace;
+    @Column(name = "secret_space_id")
+    private String FK_secretSpace;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -40,8 +39,8 @@ public class SecretEntity {
     @Column(name = "url")
     private String url;
 
-    public SecretEntity(SecretSpaceEntity secretSpace, String name, String login, String password, String note, String url) {
-        this.secretSpace = secretSpace;
+    public SecretEntity(String FK_secretSpace, String name, String login, String password, String note, String url) {
+        this.FK_secretSpace = FK_secretSpace;
         this.name = name;
         this.login = login;
         this.password = password;

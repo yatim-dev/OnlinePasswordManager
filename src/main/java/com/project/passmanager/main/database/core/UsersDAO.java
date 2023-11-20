@@ -1,15 +1,19 @@
 package com.project.passmanager.main.database.core;
 
 import com.project.passmanager.main.database.models.UserEntity;
+import jdk.jfr.Category;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.hibernate.TransactionException;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@AllArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class UsersDAO {
 
     SessionFactory sessionFactory;
@@ -17,8 +21,9 @@ public class UsersDAO {
     public List<UserEntity> getAllUsers() throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Query<UserEntity> query = session.createQuery("FROM UserEntity", UserEntity.class);
-            List<UserEntity> users = query.getResultList();
+            var users = session
+                    .createQuery("FROM UserEntity", UserEntity.class)
+                    .getResultList();
             session.getTransaction().commit();
             return users;
         }
