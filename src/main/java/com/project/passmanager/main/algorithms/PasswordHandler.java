@@ -2,29 +2,14 @@ package com.project.passmanager.main.algorithms;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.stereotype.Component;
 
 /**
  * Класс `PasswordHandler` представляет собой реализацию интерфейса `IPasswordHandler` и предназначен для работы с паролями.
  * Он предоставляет методы для шифрования паролей и проверки соответствия хешированных паролей открытому.
  */
-
+@Component
 public class PasswordHandler implements IPasswordHandler {
-
-    private static PasswordHandler instance;
-
-    /**
-     * Приватный конструктор, чтобы предотвратить создание экземпляров извне.
-     */
-    private PasswordHandler() {
-    }
-
-    public static PasswordHandler getInstance() {
-        if (instance == null) {
-            instance = new PasswordHandler();
-        }
-        return instance;
-    }
-
     /**
      * Шифрует переданный пароль с использованием хеширования BCrypt и добавляет к нему случайно сгенерированные "перец" (pepper).
      *

@@ -1,11 +1,14 @@
 package com.project.passmanager.main.algorithms.PasswordCheckerCommand;
 
 
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+@Component
 public class PasswordCheckCommandExecutor {
 
     private final List<IPasswordCheckCommand> commands = Arrays.asList(
@@ -17,19 +20,7 @@ public class PasswordCheckCommandExecutor {
             new CheckCommonPasswordCommand()
     );
 
-    private static PasswordCheckCommandExecutor instance;
-
-    private PasswordCheckCommandExecutor() {
-    }
-
-    public static PasswordCheckCommandExecutor getInstance() {
-        if (instance == null) {
-            instance = new PasswordCheckCommandExecutor();
-        }
-        return instance;
-    }
-
-    public Integer evaluatePasswordStrength(String password) {
+    public Integer evaluatePasswordStrength(String password) throws IOException {
 
         var rating = new ArrayList<Integer>();
 

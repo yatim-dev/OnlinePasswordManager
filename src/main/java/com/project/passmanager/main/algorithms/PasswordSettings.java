@@ -1,19 +1,14 @@
 package com.project.passmanager.main.algorithms;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class PasswordSettings {
     private int passwordLength;
     private boolean useLower;
     private boolean useUpper;
     private boolean useDigits;
     private boolean useSpecialCharacters;
-
-    public PasswordSettings(int passwordLength, boolean useLower, boolean useUpper, boolean useDigits, boolean useSpecialCharacters) {
-        this.passwordLength = passwordLength;
-        this.useLower = useLower;
-        this.useUpper = useUpper;
-        this.useDigits = useDigits;
-        this.useSpecialCharacters = useSpecialCharacters;
-    }
 
     public int getPasswordLength() {
         return passwordLength;
