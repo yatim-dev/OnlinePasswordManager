@@ -5,6 +5,7 @@ import com.project.passmanager.main.database.mappers.SecretMapper;
 import com.project.passmanager.main.domain.models.Secret;
 import com.project.passmanager.main.domain.repositories.ISecretRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,7 +14,9 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class SecretRepositoryImpl implements ISecretRepository {
+    @Autowired
     SecretMapper secretMapper;
+    @Autowired
     SecretsDAO secretsDAO;
 
     @Override
@@ -27,8 +30,8 @@ public class SecretRepositoryImpl implements ISecretRepository {
     }
 
     @Override
-    public Secret getSecretById(String id) {
-        return secretMapper.transform(secretsDAO.getSecretById(id));
+    public Secret getSecretById(String secretId) {
+        return secretMapper.transform(secretsDAO.getSecretById(secretId));
     }
 
     @Override
@@ -49,7 +52,12 @@ public class SecretRepositoryImpl implements ISecretRepository {
     }
 
     @Override
-    public void deleteSecret(String id) {
-        secretsDAO.getSecretById(id);
+    public void deleteSecret(String secretId) {
+        secretsDAO.deleteSecretById(secretId);
+    }
+
+    @Override
+    public void deleteSecretsInSecretSpace(String secretSpaceId) {
+        secretsDAO.deleteAllSecretsBySecretSpace(secretSpaceId);
     }
 }

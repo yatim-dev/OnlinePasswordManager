@@ -15,4 +15,6 @@ public interface ISecretRepository {
     Secret getEmptySecret(String secretSpaceId);
     void saveSecret(Secret secret);
     void deleteSecret(String id);
+
+    void deleteSecretsInSecretSpace(String secretSpaceId);
 }

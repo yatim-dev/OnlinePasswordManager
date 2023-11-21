@@ -1,13 +1,11 @@
 package com.project.passmanager.main.database.core;
 
 import com.project.passmanager.main.database.models.UserEntity;
-import jdk.jfr.Category;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.hibernate.TransactionException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsersDAO {
 
+    @Autowired
     SessionFactory sessionFactory;
 
     public List<UserEntity> getAllUsers() throws TransactionException {
@@ -65,17 +64,12 @@ public class UsersDAO {
         }
     }
 
-    //TODO: id сбивается
-    public void updateUser(UserEntity user) throws TransactionException {
-        deleteUser(user);
-        putUser(user);
-        //session.refresh()
-    }
-
-    public void deleteUser(UserEntity user) throws TransactionException {
+    public void deleteUserById(String userId) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            session.remove(user);
+            var user = session.find(UserEntity.class, userId);
+            if (user != null)
+                session.remove(user);
             session.getTransaction().commit();
         }
     }

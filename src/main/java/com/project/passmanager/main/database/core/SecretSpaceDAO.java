@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.TransactionException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class SecretSpaceDAO {
+    @Autowired
     SessionFactory sessionFactory;
 
     public void putSecretSpaceByUser(SecretSpaceEntity secretSpace) throws TransactionException {
