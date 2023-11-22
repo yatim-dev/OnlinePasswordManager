@@ -7,7 +7,7 @@ import java.util.UUID;
 
 /**
  * Модель секркета для database слоя
- * */
+ */
 @Getter
 @Setter
 @Entity

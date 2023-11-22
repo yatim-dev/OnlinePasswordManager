@@ -16,7 +16,7 @@ public class SecretsDAO {
     @Autowired
     SessionFactory sessionFactory;
 
-    public List<SecretEntity> getSecretsBySecretSpaceId(String FK_secretSpace) throws TransactionException{
+    public List<SecretEntity> getSecretsBySecretSpaceId(String FK_secretSpace) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             var secrets = session.createQuery(
@@ -30,7 +30,7 @@ public class SecretsDAO {
 
     }
 
-    public SecretEntity getSecretById(String secretId) throws TransactionException{
+    public SecretEntity getSecretById(String secretId) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             var secret = session.find(SecretEntity.class, secretId);
@@ -44,8 +44,6 @@ public class SecretsDAO {
 
     public void putSecret(SecretEntity secret) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
-
-            secret.setFK_secretSpace(secret.getFK_secretSpace());
             session.beginTransaction();
             session.persist(secret);
             session.getTransaction().commit();
@@ -74,7 +72,7 @@ public class SecretsDAO {
                     .getResultList();
 
             if (secrets != null)
-                for (var secret: secrets) {
+                for (var secret : secrets) {
                     session.remove(secret);
                 }
 

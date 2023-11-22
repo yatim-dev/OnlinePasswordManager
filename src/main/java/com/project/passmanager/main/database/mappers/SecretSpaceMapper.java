@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * маппинг модели SecretSpace слоев domain и database
- * */
+ */
 @Component
 public class SecretSpaceMapper {
     public SecretSpaceEntity transform(SecretSpace secretSpace) {

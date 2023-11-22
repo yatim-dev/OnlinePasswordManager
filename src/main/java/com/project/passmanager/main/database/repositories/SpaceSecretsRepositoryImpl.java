@@ -4,6 +4,7 @@ import com.project.passmanager.main.database.core.SecretSpaceDAO;
 import com.project.passmanager.main.database.mappers.SecretSpaceMapper;
 import com.project.passmanager.main.domain.models.SecretSpace;
 import com.project.passmanager.main.domain.repositories.ISpaceSecretsRepository;
+import com.project.passmanager.main.network.controllers.UserController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,10 +16,14 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class SpaceSecretsRepositoryImpl implements ISpaceSecretsRepository {
+    SecretSpaceMapper secretSpaceMapper;
+    SecretSpaceDAO secretsSpaceDAO;
+
     @Autowired
-    private final SecretSpaceMapper secretSpaceMapper;
-    @Autowired
-    private final SecretSpaceDAO secretsSpaceDAO;
+    public SpaceSecretsRepositoryImpl(SecretSpaceMapper secretSpaceMapper, SecretSpaceDAO secretSpaceDAO) {
+        this.secretSpaceMapper = secretSpaceMapper;
+        this.secretsSpaceDAO = secretSpaceDAO;
+    }
 
     @Override
     public List<SecretSpace> getSecretSpaces(String userId) {
@@ -39,6 +44,7 @@ public class SpaceSecretsRepositoryImpl implements ISpaceSecretsRepository {
 
     @Override
     public void saveSecretSpace(SecretSpace secretSpace) {
+        secretSpace.setF_key(UserController.defaultUserId);
         secretsSpaceDAO
                 .putSecretSpaceByUser(
                         secretSpaceMapper

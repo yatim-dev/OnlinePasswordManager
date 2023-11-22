@@ -18,7 +18,6 @@ public class SecretSpaceDAO {
 
     public void putSecretSpaceByUser(SecretSpaceEntity secretSpace) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
-            secretSpace.setFK_user(secretSpace.getFK_user());
             session.beginTransaction();
             session.persist(secretSpace);
             session.getTransaction().commit();
@@ -29,7 +28,7 @@ public class SecretSpaceDAO {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             var secretSpaceEntities = session.createQuery(
-                    "SELECT ss FROM SecretSpaceEntity ss WHERE ss.FK_user = :user_id",
+                            "SELECT ss FROM SecretSpaceEntity ss WHERE ss.FK_user = :user_id",
                             SecretSpaceEntity.class
                     )
                     .setParameter("user_id", userId)

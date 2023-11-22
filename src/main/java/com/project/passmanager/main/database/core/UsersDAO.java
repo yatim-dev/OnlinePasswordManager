@@ -32,9 +32,9 @@ public class UsersDAO {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             var user = session.createQuery(
-                    "FROM UserEntity WHERE id = :userId",
-                    UserEntity.class
-            )
+                            "FROM UserEntity WHERE id = :userId",
+                            UserEntity.class
+                    )
                     .setParameter("userId", userId)
                     .uniqueResult();
             session.getTransaction().commit();
@@ -46,9 +46,9 @@ public class UsersDAO {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             var user = session.createQuery(
-                    "SELECT u FROM UserEntity u WHERE u.login = :login",
-                    UserEntity.class
-            )
+                            "SELECT u FROM UserEntity u WHERE u.login = :login",
+                            UserEntity.class
+                    )
                     .setParameter("login", login)
                     .uniqueResult();
             session.getTransaction().commit();

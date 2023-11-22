@@ -24,7 +24,7 @@ public class SecretSpaceEntity {
     @Column(name="user_id")
     private String FK_user;
 
-    @Column(name ="name", unique = true, nullable = false)
+    @Column(name="name", nullable=false)
     private String name;
 
     public SecretSpaceEntity(String FK_user, String name) {

@@ -14,10 +14,14 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements IUserRepository {
-    @Autowired
     UserMapper userMapper;
-    @Autowired
     UsersDAO usersDAO;
+
+    @Autowired
+    public UserRepositoryImpl(UserMapper userMapper, UsersDAO usersDAO) {
+        this.userMapper = userMapper;
+        this.usersDAO = usersDAO;
+    }
 
     @Override
     public List<User> getAllUsers() {

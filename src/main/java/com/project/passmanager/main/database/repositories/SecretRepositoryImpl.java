@@ -14,10 +14,14 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class SecretRepositoryImpl implements ISecretRepository {
-    @Autowired
     SecretMapper secretMapper;
-    @Autowired
     SecretsDAO secretsDAO;
+
+    @Autowired
+    public SecretRepositoryImpl(SecretMapper secretMapper, SecretsDAO secretsDAO) {
+        this.secretMapper = secretMapper;
+        this.secretsDAO = secretsDAO;
+    }
 
     @Override
     public List<Secret> getSecrets(String secretSpaceId) {
@@ -39,6 +43,7 @@ public class SecretRepositoryImpl implements ISecretRepository {
         return new Secret(
                 UUID.randomUUID().toString(),
                 secretSpaceId,
+                "",
                 "",
                 "",
                 "",

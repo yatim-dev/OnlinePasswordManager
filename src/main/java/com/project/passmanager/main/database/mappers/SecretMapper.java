@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * маппинг модели Secret слоев domain и database
- * */
+ */
 @Component
 public class SecretMapper {
     public SecretEntity transform(Secret secret) {
@@ -18,7 +18,8 @@ public class SecretMapper {
                 secret.getName(),
                 secret.getLogin(),
                 secret.getPassword(),
-                secret.getNote()
+                secret.getNote(),
+                secret.getUrl()
         );
     }
 
@@ -36,7 +37,8 @@ public class SecretMapper {
                 secretEntity.getName(),
                 secretEntity.getLogin(),
                 secretEntity.getPassword(),
-                secretEntity.getNote()
+                secretEntity.getNote(),
+                secretEntity.getUrl()
         );
     }
 
