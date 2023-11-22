@@ -45,7 +45,7 @@ public class SecretsDAO {
     public void putSecret(SecretEntity secret) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            session.persist(secret);
+            session.merge(secret);
             session.getTransaction().commit();
         }
     }
