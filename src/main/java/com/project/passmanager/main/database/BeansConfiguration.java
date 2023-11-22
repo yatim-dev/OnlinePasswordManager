@@ -34,7 +34,6 @@ public class BeansConfiguration {
                 .addAnnotatedClass(SecretSpaceEntity.class)
                 .buildSessionFactory();
     }
-
     @Bean
     public SecretMapper secretMapper(){
         return new SecretMapper();
