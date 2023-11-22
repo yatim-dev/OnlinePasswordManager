@@ -13,13 +13,22 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+import java.util.Properties;
 
-public class Config {
+@Configuration
+public class BeansConfiguration {
     @Bean
     public SessionFactory sessionFactory(){
+        var properties = new Properties();
+        properties.setProperty("hibernate.connection.url", System.getenv("opm.db.url"));
+        properties.setProperty("connection.driver_class", System.getenv("opm.db.driver_class"));
+        properties.setProperty("hibernate.connection.username", System.getenv("opm.db.username"));
+        properties.setProperty("hibernate.connection.password", System.getenv("opm.db.password"));
+        properties.setProperty("hibernate.current_session_context_class", "thread");
+        properties.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
+
         return new org.hibernate.cfg.Configuration()
-                .configure("hibernate.cfg.xml")
+                .addProperties(properties)
                 .addAnnotatedClass(UserEntity.class)
                 .addAnnotatedClass(SecretEntity.class)
                 .addAnnotatedClass(SecretSpaceEntity.class)
@@ -31,15 +40,23 @@ public class Config {
         return new SecretMapper();
     }
     @Bean
+    public SecretSpaceMapper secretSpaceMapper() {
+        return new SecretSpaceMapper();
+    }
+    @Bean
+    public UserMapper userMapper() {
+        return new UserMapper();
+    }
+    @Bean
     public SecretsDAO secretsDAO(){
         return new SecretsDAO();
     }
     @Bean
-    public SecretSpaceMapper secretSpaceMapper() {return new SecretSpaceMapper();}
+    public SecretSpaceDAO secretSpaceDAO() {
+        return new SecretSpaceDAO();
+    }
     @Bean
-    public SecretSpaceDAO secretSpaceDAO() {return new SecretSpaceDAO();}
-    @Bean
-    public UserMapper userMapper() {return new UserMapper();}
-    @Bean
-    public UsersDAO usersDAO() {return new UsersDAO();}
+    public UsersDAO usersDAO() {
+        return new UsersDAO();
+    }
 }
