@@ -6,11 +6,22 @@ public class CheckLowerCaseAndUpperCasePasswordCommand implements IPasswordCheck
      * Проверяет, содержит ли пароль буквы в верхнем и нижнем регистре.
      *
      * @param password Пароль для проверки.
-     * @return 12, если пароль содержит буквы в обоих регистрах, иначе - 0.
+     * @return Баллы, рассчитанные на основе количества заглавных и прописных букв.
      */
     @Override
     public int execute(String password) {
-        if (password.matches(".*[a-z].*") && password.matches(".*[A-Z].*")) return 12;
-        else return 0;
+        var uppercaseCount = 0;
+        var lowercaseCount = 0;
+
+        for (var character : password.toCharArray()) {
+            if (Character.isUpperCase(character)) {
+                uppercaseCount++;
+            } else if (Character.isLowerCase(character)) {
+                lowercaseCount++;
+            }
+        }
+
+        // Присвоение баллов в зависимости от количества заглавных и прописных букв
+        return Math.min(uppercaseCount, lowercaseCount) * 2;
     }
 }
