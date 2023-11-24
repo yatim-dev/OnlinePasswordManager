@@ -25,17 +25,23 @@ public class SecretRepositoryImpl implements ISecretRepository {
 
     @Override
     public List<Secret> getSecrets(String secretSpaceId) {
-        return secretMapper.transformToSecrets(secretsDAO.getSecretsBySecretSpaceId(secretSpaceId));
+        return secretMapper.transformToSecrets(
+                secretsDAO.getSecretsBySecretSpaceId(secretSpaceId)
+        );
     }
 
     @Override
     public List<Secret> getSecretsBySecretSpaceId(String secretSpaceId) {
-        return secretMapper.transformToSecrets(secretsDAO.getSecretsBySecretSpaceId(secretSpaceId));
+        return secretMapper.transformToSecrets(
+                secretsDAO.getSecretsBySecretSpaceId(secretSpaceId)
+        );
     }
 
     @Override
     public Secret getSecretById(String secretId) {
-        return secretMapper.transform(secretsDAO.getSecretById(secretId));
+        return secretMapper.transform(
+                secretsDAO.getSecretById(secretId)
+        );
     }
 
     @Override
@@ -53,7 +59,9 @@ public class SecretRepositoryImpl implements ISecretRepository {
 
     @Override
     public void saveSecret(Secret secret) {
-        secretsDAO.putSecret(secretMapper.transform(secret));
+        secretsDAO.putSecret(
+                secretMapper.transform(secret)
+        );
     }
 
     @Override

@@ -27,10 +27,9 @@ public class SpaceSecretsRepositoryImpl implements ISpaceSecretsRepository {
 
     @Override
     public List<SecretSpace> getSecretSpaces(String userId) {
-        return secretSpaceMapper
-                .transformToSecretSpaces(secretsSpaceDAO
-                        .getSecretSpacesByUserId(userId)
-                );
+        return secretSpaceMapper.transformToSecretSpaces(
+                secretsSpaceDAO.getSecretSpacesByUserId(userId)
+        );
     }
 
     @Override
@@ -44,12 +43,11 @@ public class SpaceSecretsRepositoryImpl implements ISpaceSecretsRepository {
 
     @Override
     public void saveSecretSpace(SecretSpace secretSpace) {
+        //TODO: remove defaultUserId
         secretSpace.setF_key(UserController.defaultUserId);
-        secretsSpaceDAO
-                .putSecretSpaceByUser(
-                        secretSpaceMapper
-                                .transform(secretSpace)
-                );
+        secretsSpaceDAO.putSecretSpaceByUser(
+                secretSpaceMapper.transform(secretSpace)
+        );
     }
 
     @Override

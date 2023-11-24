@@ -25,20 +25,16 @@ public class UserRepositoryImpl implements IUserRepository {
 
     @Override
     public List<User> getAllUsers() {
-        return userMapper
-                .transformToUsers(
-                        usersDAO.
-                                getAllUsers()
-                );
+        return userMapper.transformToUsers(
+                usersDAO.getAllUsers()
+        );
     }
 
     @Override
     public User getUser(String userId) {
-        return userMapper
-                .transform(
-                        usersDAO.
-                                getUserById(userId)
-                );
+        return userMapper.transform(
+                usersDAO.getUserById(userId)
+        );
     }
 
     @Override
@@ -52,20 +48,16 @@ public class UserRepositoryImpl implements IUserRepository {
 
     @Override
     public User getUserByLogin(String login) {
-        return userMapper
-                .transform(
-                        usersDAO
-                                .getUserByLogin(login)
-                );
+        return userMapper.transform(
+                usersDAO.getUserByLogin(login)
+        );
     }
 
     @Override
     public void saveUser(User user) {
-        usersDAO
-                .putUser(
-                        userMapper
-                                .transform(user)
-                );
+        usersDAO.putUser(
+                userMapper.transform(user)
+        );
     }
 
     @Override
