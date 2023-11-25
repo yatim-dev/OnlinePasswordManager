@@ -3,14 +3,12 @@ package com.project.passmanager.main.database.mappers;
 
 import com.project.passmanager.main.database.models.SecretSpaceEntity;
 import com.project.passmanager.main.domain.models.SecretSpace;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * маппинг модели SecretSpace слоев domain и database
  */
-@Component
 public class SecretSpaceMapper {
     public SecretSpaceEntity transform(SecretSpace secretSpace) {
         return new SecretSpaceEntity(

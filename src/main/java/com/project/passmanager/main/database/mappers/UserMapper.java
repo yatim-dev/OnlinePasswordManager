@@ -2,11 +2,9 @@ package com.project.passmanager.main.database.mappers;
 
 import com.project.passmanager.main.database.models.UserEntity;
 import com.project.passmanager.main.domain.models.User;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 public class UserMapper {
     public UserEntity transform(User user) {
         return new UserEntity(
