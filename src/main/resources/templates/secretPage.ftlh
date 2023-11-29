@@ -9,6 +9,7 @@
     Login: <input type="text" name="login" value="${secret.login}"/><br><br>
     Password: <input type="text" name="password" value="${secret.password}"/><br><br>
     Note: <input type="text" name="note" value="${secret.note}"/><br><br>
+    URL: <input type="text" name="url" value="${secret.url}"/><br><br>
     <input type="submit" value="save">
 </form>
 <form action="/secret/delete/${secret.secretSpaceId}/${secret.id}" method="post">

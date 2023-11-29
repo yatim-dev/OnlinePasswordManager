@@ -45,7 +45,9 @@ public class SecretDetailsController {
 
     @PostMapping("/secret/{secretId}/createPassword")
     public String createPassword(@PathVariable String secretId) {
-        var passwordSettings = new PasswordSettings(8, true, true, true, true);
+        var passwordSettings = new PasswordSettings(
+                16, true, true, true, true
+        );
         return secretDetailsPage.redirectPageAfterCreationPassword(secretId, passwordSettings);
     }
 }

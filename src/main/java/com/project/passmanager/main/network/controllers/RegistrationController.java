@@ -4,6 +4,7 @@ import com.project.passmanager.main.domain.models.DomainUser;
 import com.project.passmanager.main.network.pages.SpaceSecretsPage;
 import com.project.passmanager.main.network.services.UserRegistrationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Controller
 public class RegistrationController {
     private final UserRegistrationService userRegistrationService;
+    private final PasswordEncoder passwordEncoder;
     private final String REGISTRATION_PAGE = "registration";
 
     /**
@@ -32,6 +34,7 @@ public class RegistrationController {
     public String adduser(DomainUser domainUser, Model model) {
         try {
             domainUser.setId(UUID.randomUUID().toString());
+            domainUser.setHashPassword(passwordEncoder.encode(domainUser.getHashPassword()));
             userRegistrationService.addUser(domainUser);
             return SpaceSecretsPage.redirect();
         } catch (Exception ex) {
