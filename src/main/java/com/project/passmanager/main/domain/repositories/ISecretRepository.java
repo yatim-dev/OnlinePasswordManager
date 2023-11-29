@@ -12,7 +12,7 @@ public interface ISecretRepository {
 
     List<Secret> getSecretsBySecretSpaceId(String secretSpaceId);
     Secret getSecretById(String id);
-    Secret getEmptySecret(String secretSpaceId);
+    Secret getTempSecret(String secretSpaceId);
     void saveSecret(Secret secret);
     void deleteSecret(String id);
 

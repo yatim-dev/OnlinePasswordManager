@@ -1,5 +1,6 @@
 package com.project.passmanager.main.algorithms;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
  * Он предоставляет методы для шифрования паролей и проверки соответствия хешированных паролей открытому.
  */
 @Component
+@RequiredArgsConstructor
 public class PasswordHandler implements IPasswordHandler {
     /**
      * Шифрует переданный пароль с использованием хеширования BCrypt и добавляет к нему случайно сгенерированные "перец" (pepper).

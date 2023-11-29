@@ -43,6 +43,9 @@
     Secret space name: <input type="text" name="name"/><br><br>
     <input type="submit" value="create secret space">
 </form>
+<form action="/logout" method="get">
+    <input type="submit" value="logout"/>
+</form>
 </div>
 <div class="secretsDiv">
     <#list secrets as secret>

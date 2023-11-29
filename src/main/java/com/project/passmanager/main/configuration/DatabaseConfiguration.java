@@ -1,4 +1,4 @@
-package com.project.passmanager.main.database;
+package com.project.passmanager.main.configuration;
 
 import com.project.passmanager.main.algorithms.AES.AESEncryption;
 import com.project.passmanager.main.algorithms.AES.SaltReader;
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Properties;
 
 @Configuration
-public class BeansConfiguration {
+public class DatabaseConfiguration {
     @Bean
     public SessionFactory sessionFactory(){
         var properties = new Properties();
