@@ -1,5 +1,6 @@
 package com.project.passmanager.main.network.pages;
 
+import com.project.passmanager.main.algorithms.PasswordSettings;
 import com.project.passmanager.main.domain.models.Secret;
 import com.project.passmanager.main.network.services.SecretDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,10 @@ public class SecretDetailsPage {
 
     private final SecretDetailsService secretDetailsService;
 
+    public String redirect(String secretId) {
+        return String.format("redirect:/secret/%s", secretId);
+    }
+
     public String openSecretPage(@NonNull String secretId, Model model) {
         model.addAttribute("secret", secretDetailsService.getSecretById(secretId));
         return PAGE_NAME;
@@ -25,6 +30,11 @@ public class SecretDetailsPage {
     public String openEmptySecretPage(@NonNull String secretSpaceId, Model model) {
         model.addAttribute("secret", secretDetailsService.createEmptySecret(secretSpaceId));
         return PAGE_NAME;
+    }
+
+    public String redirectPageAfterCreationPassword(String secretId, PasswordSettings passwordSettings) {
+        secretDetailsService.createPassword(secretId, passwordSettings);
+        return redirect(secretId);
     }
 
     public String saveSecretAndOpenSpaceSecretPage(

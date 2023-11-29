@@ -1,5 +1,7 @@
 package com.project.passmanager.main.network.services;
 
+import com.project.passmanager.main.algorithms.PasswordGenerator;
+import com.project.passmanager.main.algorithms.PasswordSettings;
 import com.project.passmanager.main.domain.models.Secret;
 import com.project.passmanager.main.domain.repositories.ISecretRepository;
 import lombok.NonNull;
@@ -21,7 +23,7 @@ public class SecretDetailsService {
     }
 
     public Secret createEmptySecret(String secretSpaceId) {
-        return secretRepository.getEmptySecret(secretSpaceId);
+        return secretRepository.getTempSecret(secretSpaceId);
     }
 
     public Secret getSecretById(String id) {
@@ -34,5 +36,12 @@ public class SecretDetailsService {
 
     public void deleteSecret(String id) {
         secretRepository.deleteSecret(id);
+    }
+
+    public void createPassword(String secretId, PasswordSettings passwordSettings) {
+        var passwordGenerator = new PasswordGenerator();
+        var secret = secretRepository.getSecretById(secretId);
+        secret.setPassword(passwordGenerator.build(passwordSettings));
+        secretRepository.saveSecret(secret);
     }
 }
