@@ -1,10 +1,7 @@
 package com.project.passmanager.main.database.mappers;
 
-import com.project.passmanager.main.algorithms.AES.AESEncryption;
-import com.project.passmanager.main.algorithms.AES.SaltReader;
 import com.project.passmanager.main.database.models.UserEntity;
 import com.project.passmanager.main.domain.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
