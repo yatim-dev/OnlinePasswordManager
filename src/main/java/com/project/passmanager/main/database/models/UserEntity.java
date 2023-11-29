@@ -1,6 +1,9 @@
 package com.project.passmanager.main.database.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 import java.util.UUID;
@@ -24,8 +27,8 @@ public class UserEntity {
     @Column(name = "hashpassword")
     private String hashPassword;
 
-    @Column(name="salt_num")
-    private String saltNum;
+//    @Column(name="salt_num")
+//    private String saltNum;
 
     public UserEntity(String login, String hashPassword) {
         this.login = login;

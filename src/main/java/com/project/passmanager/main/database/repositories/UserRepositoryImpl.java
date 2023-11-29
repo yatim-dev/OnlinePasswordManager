@@ -43,8 +43,8 @@ public class UserRepositoryImpl implements IUserRepository {
         return new DomainUser(
                 UUID.randomUUID().toString(),
                 "",
-                "",
                 ""
+//                ""
         );
     }
 
@@ -67,9 +67,11 @@ public class UserRepositoryImpl implements IUserRepository {
         usersDAO.deleteUserById(userId);
     }
 
+    //TODO
     @Override
     public String getCurrentUserId() {
         var login = SecurityContextHolder.getContext().getAuthentication().getName();
+        var s = SecurityContextHolder.getContext().getAuthentication().getCredentials();
         return getUserByLogin(login).getId();
     }
 }

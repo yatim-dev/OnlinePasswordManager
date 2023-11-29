@@ -20,7 +20,7 @@ public class SecretRepositoryImpl implements ISecretRepository {
     SecretsDAO secretsDAO;
     AESEncryption aesEncryption;
     SaltReader saltReader;
-    String key = "1234tyewscf";
+    String key = "1234tyewscf"; //user.realPass + user.hashPass
     String salt = "12345tfdsedrfghjhbvc";
 
     @Autowired
@@ -37,7 +37,7 @@ public class SecretRepositoryImpl implements ISecretRepository {
             secret.setLogin(aesEncryption.decrypt(key, salt, secret.getLogin()));
             secret.setPassword(aesEncryption.decrypt(key, salt, secret.getPassword()));
             secret.setNote(aesEncryption.decrypt(key, salt, secret.getNote()));
-            //secret.setUrl(aesEncryption.encrypt(key, salt, secret.getUrl()));
+            secret.setUrl(aesEncryption.decrypt(key, salt, secret.getUrl()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -50,7 +50,7 @@ public class SecretRepositoryImpl implements ISecretRepository {
             secret.setLogin(aesEncryption.encrypt(key, salt, secret.getLogin()));
             secret.setPassword(aesEncryption.encrypt(key, salt, secret.getPassword()));
             secret.setNote(aesEncryption.encrypt(key, salt, secret.getNote()));
-            //secret.setUrl(aesEncryption.encrypt(key, salt, secret.getUrl()));
+            secret.setUrl(aesEncryption.encrypt(key, salt, secret.getUrl()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

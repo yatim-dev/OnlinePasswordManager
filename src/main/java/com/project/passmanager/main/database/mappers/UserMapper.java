@@ -10,8 +10,8 @@ public class UserMapper {
         return new UserEntity(
                 user.getId(),
                 user.getLogin(),
-                user.getHashPassword(),
-                user.getSaltNum()
+                user.getHashPassword()
+                //user.getSaltNum()
         );
     }
 
@@ -26,8 +26,8 @@ public class UserMapper {
         return new DomainUser(
                 userEntity.getId(),
                 userEntity.getLogin(),
-                userEntity.getHashPassword(),
-                userEntity.getSaltNum()
+                userEntity.getHashPassword()
+                //userEntity.getSaltNum()
         );
     }
 
