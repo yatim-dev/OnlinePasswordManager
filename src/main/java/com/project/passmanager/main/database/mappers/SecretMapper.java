@@ -2,14 +2,12 @@ package com.project.passmanager.main.database.mappers;
 
 import com.project.passmanager.main.database.models.SecretEntity;
 import com.project.passmanager.main.domain.models.Secret;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * маппинг модели Secret слоев domain и database
  */
-@Component
 public class SecretMapper {
     public SecretEntity transform(Secret secret) {
         return new SecretEntity(
