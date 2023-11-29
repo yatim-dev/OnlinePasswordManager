@@ -24,7 +24,7 @@ public class SpaceSecretsPage {
         return String.format("redirect:/spaceSecret/%s", secretSpaceId);
     }
 
-    public static String refreshPage() {
+    public static String redirect() {
         return "redirect:/spaceSecret";
     }
 
@@ -45,7 +45,7 @@ public class SpaceSecretsPage {
         if (spaceSecretsService.getSecretSpaces().size() == 1) {
             SELECTED_SECRET_SPACE_ID = secretSpace.getId();
         }
-        return refreshPage();
+        return redirect();
     }
 
     public String deleteSecretSpace(String secretSpaceId) {
@@ -58,6 +58,6 @@ public class SpaceSecretsPage {
             SELECTED_SECRET_SPACE_ID = spaces.get(0).getId();
         }
 
-        return refreshPage();
+        return redirect();
     }
 }

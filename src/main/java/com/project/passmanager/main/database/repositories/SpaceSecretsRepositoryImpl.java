@@ -4,7 +4,6 @@ import com.project.passmanager.main.database.core.SecretSpaceDAO;
 import com.project.passmanager.main.database.mappers.SecretSpaceMapper;
 import com.project.passmanager.main.domain.models.SecretSpace;
 import com.project.passmanager.main.domain.repositories.ISpaceSecretsRepository;
-import com.project.passmanager.main.network.controllers.UserController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,9 +41,8 @@ public class SpaceSecretsRepositoryImpl implements ISpaceSecretsRepository {
     }
 
     @Override
-    public void saveSecretSpace(SecretSpace secretSpace) {
-        //TODO: remove defaultUserId
-        secretSpace.setF_key(UserController.defaultUserId);
+    public void saveSecretSpace(SecretSpace secretSpace, String userId) {
+        secretSpace.setF_key(userId);
         secretsSpaceDAO.putSecretSpaceByUser(
                 secretSpaceMapper.transform(secretSpace)
         );

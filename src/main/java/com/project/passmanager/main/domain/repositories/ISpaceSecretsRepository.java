@@ -12,6 +12,6 @@ public interface ISpaceSecretsRepository {
 
     SecretSpace getEmptySecretSpace(String userId);
 
-    void saveSecretSpace(SecretSpace secretSpace);
+    void saveSecretSpace(SecretSpace secretSpace, String userId);
     void deleteSecretSpace(String secretSpaceId);
 }

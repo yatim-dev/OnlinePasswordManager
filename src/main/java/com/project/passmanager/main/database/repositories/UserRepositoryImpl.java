@@ -2,10 +2,11 @@ package com.project.passmanager.main.database.repositories;
 
 import com.project.passmanager.main.database.core.UsersDAO;
 import com.project.passmanager.main.database.mappers.UserMapper;
-import com.project.passmanager.main.domain.models.User;
+import com.project.passmanager.main.domain.models.DomainUser;
 import com.project.passmanager.main.domain.repositories.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,22 +25,22 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<DomainUser> getAllUsers() {
         return userMapper.transformToUsers(
                 usersDAO.getAllUsers()
         );
     }
 
     @Override
-    public User getUser(String userId) {
+    public DomainUser getUser(String userId) {
         return userMapper.transform(
                 usersDAO.getUserById(userId)
         );
     }
 
     @Override
-    public User getEmptyUser() {
-        return new User(
+    public DomainUser getEmptyUser() {
+        return new DomainUser(
                 UUID.randomUUID().toString(),
                 "",
                 ""
@@ -47,14 +48,14 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
-    public User getUserByLogin(String login) {
+    public DomainUser getUserByLogin(String login) {
         return userMapper.transform(
                 usersDAO.getUserByLogin(login)
         );
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(DomainUser user) {
         usersDAO.putUser(
                 userMapper.transform(user)
         );
@@ -63,5 +64,11 @@ public class UserRepositoryImpl implements IUserRepository {
     @Override
     public void deleteUser(String userId) {
         usersDAO.deleteUserById(userId);
+    }
+
+    @Override
+    public String getCurrentUserId() {
+        var login = SecurityContextHolder.getContext().getAuthentication().getName();
+        return getUserByLogin(login).getId();
     }
 }
