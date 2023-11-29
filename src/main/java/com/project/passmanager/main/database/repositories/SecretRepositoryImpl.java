@@ -45,16 +45,8 @@ public class SecretRepositoryImpl implements ISecretRepository {
     }
 
     @Override
-    public Secret getEmptySecret(String secretSpaceId) {
-        return new Secret(
-                UUID.randomUUID().toString(),
-                secretSpaceId,
-                "",
-                "",
-                "",
-                "",
-                ""
-        );
+    public Secret getTempSecret(String secretSpaceId) {
+        return new Secret(UUID.randomUUID().toString(), secretSpaceId, "", "", "", "", "");
     }
 
     @Override

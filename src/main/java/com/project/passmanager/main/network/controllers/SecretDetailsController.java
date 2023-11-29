@@ -1,5 +1,6 @@
 package com.project.passmanager.main.network.controllers;
 
+import com.project.passmanager.main.algorithms.PasswordSettings;
 import com.project.passmanager.main.domain.models.Secret;
 import com.project.passmanager.main.network.pages.SecretDetailsPage;
 import com.project.passmanager.main.network.pages.SpaceSecretsPage;
@@ -40,5 +41,11 @@ public class SecretDetailsController {
         } else {
             return SpaceSecretsPage.redirect();
         }
+    }
+
+    @PostMapping("/secret/{secretId}/createPassword")
+    public String createPassword(@PathVariable String secretId) {
+        var passwordSettings = new PasswordSettings(8, true, true, true, true);
+        return secretDetailsPage.redirectPageAfterCreationPassword(secretId, passwordSettings);
     }
 }
