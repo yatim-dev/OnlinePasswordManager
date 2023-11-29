@@ -11,7 +11,7 @@ public class SaltReader {
 
     private final String filePath = "src/main/resources/salts.txt";
 
-    public String getSaltByLineNumber() throws IOException {
+    public String getSalt() throws IOException {
         List<String> salts = readSaltsFromFile();
         var lineNumber = getRandomLine() % salts.size();
         return salts.get(lineNumber - 1);

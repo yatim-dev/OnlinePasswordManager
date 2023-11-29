@@ -1,5 +1,7 @@
 package com.project.passmanager.main.database;
 
+import com.project.passmanager.main.algorithms.AES.AESEncryption;
+import com.project.passmanager.main.algorithms.AES.SaltReader;
 import com.project.passmanager.main.database.core.SecretSpaceDAO;
 import com.project.passmanager.main.database.core.SecretsDAO;
 import com.project.passmanager.main.database.core.UsersDAO;
@@ -58,4 +60,8 @@ public class BeansConfiguration {
     public UsersDAO usersDAO() {
         return new UsersDAO();
     }
+    @Bean
+    public AESEncryption aesEncryption() { return new AESEncryption(); }
+    @Bean
+    public SaltReader saltReader() { return new SaltReader(); }
 }

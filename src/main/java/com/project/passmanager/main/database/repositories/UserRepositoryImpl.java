@@ -42,6 +42,7 @@ public class UserRepositoryImpl implements IUserRepository {
         return new User(
                 UUID.randomUUID().toString(),
                 "",
+                "",
                 ""
         );
     }

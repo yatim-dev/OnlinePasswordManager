@@ -24,6 +24,9 @@ public class UserEntity {
     @Column(name = "hashpassword")
     private String hashPassword;
 
+    @Column(name="salt_num")
+    private String saltNum;
+
     public UserEntity(String login, String hashPassword) {
         this.login = login;
         this.hashPassword = hashPassword;
