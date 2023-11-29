@@ -8,7 +8,7 @@ import lombok.Data;
  * */
 @Data
 @AllArgsConstructor
-public class User {
+public class DomainUser {
     private String id;
     private String login;
     private String hashPassword;

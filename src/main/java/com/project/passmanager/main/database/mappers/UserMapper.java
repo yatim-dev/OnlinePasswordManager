@@ -1,12 +1,12 @@
 package com.project.passmanager.main.database.mappers;
 
 import com.project.passmanager.main.database.models.UserEntity;
-import com.project.passmanager.main.domain.models.User;
+import com.project.passmanager.main.domain.models.DomainUser;
 
 import java.util.List;
 
 public class UserMapper {
-    public UserEntity transform(User user) {
+    public UserEntity transform(DomainUser user) {
         return new UserEntity(
                 user.getId(),
                 user.getLogin(),
@@ -14,22 +14,22 @@ public class UserMapper {
         );
     }
 
-    public List<UserEntity> transformToSecretsEntity(List<User> secrets) {
+    public List<UserEntity> transformToSecretsEntity(List<DomainUser> secrets) {
         return secrets
                 .stream()
                 .map(this::transform)
                 .toList();
     }
 
-    public User transform(UserEntity userEntity) {
-        return new User(
+    public DomainUser transform(UserEntity userEntity) {
+        return new DomainUser(
                 userEntity.getId(),
                 userEntity.getLogin(),
                 userEntity.getHashPassword()
         );
     }
 
-    public List<User> transformToUsers(List<UserEntity> userEntities) {
+    public List<DomainUser> transformToUsers(List<UserEntity> userEntities) {
         return userEntities
                 .stream()
                 .map(this::transform)

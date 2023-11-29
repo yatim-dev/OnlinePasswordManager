@@ -38,7 +38,7 @@ public class SecretDetailsController {
         if (!SpaceSecretsPage.SELECTED_SECRET_SPACE_ID.isBlank()) {
             return secretDetailsPage.openEmptySecretPage(SpaceSecretsPage.SELECTED_SECRET_SPACE_ID, model);
         } else {
-            return SpaceSecretsPage.refreshPage();
+            return SpaceSecretsPage.redirect();
         }
     }
 }

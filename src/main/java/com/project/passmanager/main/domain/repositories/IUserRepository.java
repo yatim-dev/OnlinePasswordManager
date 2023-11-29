@@ -1,19 +1,21 @@
 package com.project.passmanager.main.domain.repositories;
 
-import com.project.passmanager.main.domain.models.User;
+import com.project.passmanager.main.domain.models.DomainUser;
 
 import java.util.List;
 
 public interface IUserRepository {
-    List<User> getAllUsers();
+    List<DomainUser> getAllUsers();
 
-    User getUser(String userId);
+    DomainUser getUser(String userId);
 
-    User getEmptyUser();
+    DomainUser getEmptyUser();
 
-    User getUserByLogin(String login);
+    DomainUser getUserByLogin(String login);
 
-    void saveUser(User user);
+    void saveUser(DomainUser user);
 
     void deleteUser(String userId);
+
+    String getCurrentUserId();
 }
