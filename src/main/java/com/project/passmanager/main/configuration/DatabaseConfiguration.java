@@ -12,12 +12,15 @@ import com.project.passmanager.main.database.models.SecretEntity;
 import com.project.passmanager.main.database.models.SecretSpaceEntity;
 import com.project.passmanager.main.database.models.UserEntity;
 import org.hibernate.SessionFactory;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
 @Configuration
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class DatabaseConfiguration {
     @Bean
     public SessionFactory sessionFactory(){
@@ -26,8 +29,10 @@ public class DatabaseConfiguration {
         properties.setProperty("connection.driver_class", System.getenv("opm.db.driver_class"));
         properties.setProperty("hibernate.connection.username", System.getenv("opm.db.username"));
         properties.setProperty("hibernate.connection.password", System.getenv("opm.db.password"));
+        properties.setProperty("hibernate.dialect", System.getenv("opm.db.dialect"));
         properties.setProperty("hibernate.current_session_context_class", "thread");
-        properties.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.setProperty("connection_pool_size", "1");
+        properties.setProperty("hbm2ddl.auto", "create");
 
         return new org.hibernate.cfg.Configuration()
                 .addProperties(properties)

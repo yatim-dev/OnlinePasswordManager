@@ -8,10 +8,10 @@ import lombok.*;
 
 import java.util.UUID;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
