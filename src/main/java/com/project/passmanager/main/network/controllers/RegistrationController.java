@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Random;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -36,6 +37,7 @@ public class RegistrationController {
     public String adduser(DomainUser domainUser, Model model) {
         try {
             domainUser.setId(UUID.randomUUID().toString());
+            domainUser.setSaltNum(String.valueOf(new Random().nextInt()));
             domainUser.setHashPassword(passwordEncoder.encode(domainUser.getHashPassword()));
             userRegistrationService.addUser(domainUser);
             return SpaceSecretsPage.redirect();

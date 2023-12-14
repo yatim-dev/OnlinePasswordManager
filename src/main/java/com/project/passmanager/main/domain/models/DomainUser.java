@@ -12,5 +12,5 @@ public class DomainUser {
     private String id;
     private String login;
     private String hashPassword;
-//    private String saltNum;
+    private String saltNum;
 }
