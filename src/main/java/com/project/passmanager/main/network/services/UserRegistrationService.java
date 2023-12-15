@@ -22,6 +22,8 @@ import java.util.Collection;
 @Component
 public class UserRegistrationService implements UserDetailsService {
     private final IUserRepository userRepository;
+    String saltNum;
+    String key;
 
     /**
      * Загрузка пользователя по его имени
@@ -38,6 +40,10 @@ public class UserRegistrationService implements UserDetailsService {
 
         try {
             domainUser = userRepository.getUserByLogin(username);
+            saltNum = domainUser.getSaltNum();
+            key = domainUser.getHashPassword()
+                    .substring(domainUser.getHashPassword().length() / 5, domainUser.getHashPassword().length() - 1)
+                    + domainUser.getSaltNum();
         } catch (Exception exception) {
             throw new UsernameNotFoundException("custom message user not found");
         }
