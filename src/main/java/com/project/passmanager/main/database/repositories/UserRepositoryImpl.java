@@ -7,7 +7,6 @@ import com.project.passmanager.main.domain.repositories.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -68,12 +67,9 @@ public class UserRepositoryImpl implements IUserRepository {
         usersDAO.deleteUserById(userId);
     }
 
-    //TODO
     @Override
     public String getCurrentUserId() {
         var login = SecurityContextHolder.getContext().getAuthentication().getName();
-        var s = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(s);
         return getUserByLogin(login).getId();
     }
 }
