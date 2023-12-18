@@ -1,5 +1,6 @@
 package com.project.passmanager.main.database.repositories;
 
+import com.project.passmanager.main.EncryptConfig;
 import com.project.passmanager.main.algorithms.AES.AESEncryption;
 import com.project.passmanager.main.algorithms.AES.SaltReader;
 import com.project.passmanager.main.database.core.SecretsDAO;
@@ -20,8 +21,6 @@ public class SecretRepositoryImpl implements ISecretRepository {
     SecretsDAO secretsDAO;
     AESEncryption aesEncryption;
     SaltReader saltReader;
-    String key = "1234tyewscf"; //user.realPass + user.hashPass
-    String salt = "12345tfdsedrfghjhbvc";
 
     @Autowired
     public SecretRepositoryImpl(SecretMapper secretMapper, SecretsDAO secretsDAO, AESEncryption aesEncryption, SaltReader saltReader) {
@@ -32,7 +31,11 @@ public class SecretRepositoryImpl implements ISecretRepository {
     }
     
     private Secret transformDecrypt(Secret secret){
+        String key;
+        String salt;
         try {
+            key = EncryptConfig.key;
+            salt = saltReader.getSalt(EncryptConfig.saltNum);
             secret.setName(aesEncryption.decrypt(key, salt, secret.getName()));
             secret.setLogin(aesEncryption.decrypt(key, salt, secret.getLogin()));
             secret.setPassword(aesEncryption.decrypt(key, salt, secret.getPassword()));
@@ -45,7 +48,11 @@ public class SecretRepositoryImpl implements ISecretRepository {
     }
 
     private Secret transformEncrypt(Secret secret) {
+        String key;
+        String salt;
         try {
+            key = EncryptConfig.key;
+            salt = saltReader.getSalt(EncryptConfig.saltNum);
             secret.setName(aesEncryption.encrypt(key, salt, secret.getName()));
             secret.setLogin(aesEncryption.encrypt(key, salt, secret.getLogin()));
             secret.setPassword(aesEncryption.encrypt(key, salt, secret.getPassword()));

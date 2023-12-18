@@ -12,7 +12,7 @@ public class SaltReader {
 
     public String getSalt(String randomSaltNum) throws IOException {
         List<String> salts = readSaltsFromFile();
-        var lineNumber = Integer.getInteger(randomSaltNum) % salts.size();
+        var lineNumber = Integer.parseInt(randomSaltNum) % salts.size();
         return salts.get(lineNumber - 1);
     }
 

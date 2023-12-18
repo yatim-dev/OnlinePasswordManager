@@ -1,5 +1,6 @@
 package com.project.passmanager.main.network.services;
 
+import com.project.passmanager.main.EncryptConfig;
 import com.project.passmanager.main.domain.models.DomainUser;
 import com.project.passmanager.main.domain.models.Role;
 import com.project.passmanager.main.domain.repositories.IUserRepository;
@@ -22,9 +23,6 @@ import java.util.Collection;
 @Component
 public class UserRegistrationService implements UserDetailsService {
     private final IUserRepository userRepository;
-    String saltNum;
-    String key;
-
     /**
      * Загрузка пользователя по его имени
      *
@@ -34,14 +32,15 @@ public class UserRegistrationService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         Collection<GrantedAuthority> role = new ArrayList<>();
         role.add(new SimpleGrantedAuthority(("ROLE_" + Role.USER)));
         DomainUser domainUser;
 
         try {
             domainUser = userRepository.getUserByLogin(username);
-            saltNum = domainUser.getSaltNum();
-            key = domainUser.getHashPassword()
+            EncryptConfig.saltNum = domainUser.getSaltNum();
+            EncryptConfig.key = domainUser.getHashPassword()
                     .substring(domainUser.getHashPassword().length() / 5, domainUser.getHashPassword().length() - 1)
                     + domainUser.getSaltNum();
         } catch (Exception exception) {
