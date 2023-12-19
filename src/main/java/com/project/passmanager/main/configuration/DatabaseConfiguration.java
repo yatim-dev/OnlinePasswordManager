@@ -1,0 +1,72 @@
+package com.project.passmanager.main.configuration;
+
+import com.project.passmanager.main.algorithms.AES.AESEncryption;
+import com.project.passmanager.main.algorithms.AES.SaltReader;
+import com.project.passmanager.main.database.core.SecretSpaceDAO;
+import com.project.passmanager.main.database.core.SecretsDAO;
+import com.project.passmanager.main.database.core.UsersDAO;
+import com.project.passmanager.main.database.mappers.SecretMapper;
+import com.project.passmanager.main.database.mappers.SecretSpaceMapper;
+import com.project.passmanager.main.database.mappers.UserMapper;
+import com.project.passmanager.main.database.models.SecretEntity;
+import com.project.passmanager.main.database.models.SecretSpaceEntity;
+import com.project.passmanager.main.database.models.UserEntity;
+import org.hibernate.SessionFactory;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.Properties;
+
+@Configuration
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+public class DatabaseConfiguration {
+    @Bean
+    public SessionFactory sessionFactory(){
+        var properties = new Properties();
+        properties.setProperty("hibernate.connection.url", System.getenv("opm.db.url"));
+        properties.setProperty("connection.driver_class", System.getenv("opm.db.driver_class"));
+        properties.setProperty("hibernate.connection.username", System.getenv("opm.db.username"));
+        properties.setProperty("hibernate.connection.password", System.getenv("opm.db.password"));
+        properties.setProperty("hibernate.dialect", System.getenv("opm.db.dialect"));
+        properties.setProperty("hibernate.current_session_context_class", "thread");
+        properties.setProperty("connection_pool_size", "1");
+        properties.setProperty("hbm2ddl.auto", "create");
+
+        return new org.hibernate.cfg.Configuration()
+                .addProperties(properties)
+                .addAnnotatedClass(UserEntity.class)
+                .addAnnotatedClass(SecretEntity.class)
+                .addAnnotatedClass(SecretSpaceEntity.class)
+                .buildSessionFactory();
+    }
+    @Bean
+    public SecretMapper secretMapper(){
+        return new SecretMapper();
+    }
+    @Bean
+    public SecretSpaceMapper secretSpaceMapper() {
+        return new SecretSpaceMapper();
+    }
+    @Bean
+    public UserMapper userMapper() {
+        return new UserMapper();
+    }
+    @Bean
+    public SecretsDAO secretsDAO(){
+        return new SecretsDAO();
+    }
+    @Bean
+    public SecretSpaceDAO secretSpaceDAO() {
+        return new SecretSpaceDAO();
+    }
+    @Bean
+    public UsersDAO usersDAO() {
+        return new UsersDAO();
+    }
+    @Bean
+    public AESEncryption aesEncryption() { return new AESEncryption(); }
+    @Bean
+    public SaltReader saltReader() { return new SaltReader(); }
+}
