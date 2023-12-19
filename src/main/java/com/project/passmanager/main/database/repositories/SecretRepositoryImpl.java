@@ -1,7 +1,7 @@
 package com.project.passmanager.main.database.repositories;
 
-import com.project.passmanager.main.EncryptConfig;
 import com.project.passmanager.main.algorithms.AES.AESEncryption;
+import com.project.passmanager.main.algorithms.AES.EncryptConfig;
 import com.project.passmanager.main.algorithms.AES.SaltReader;
 import com.project.passmanager.main.database.core.SecretsDAO;
 import com.project.passmanager.main.database.mappers.SecretMapper;

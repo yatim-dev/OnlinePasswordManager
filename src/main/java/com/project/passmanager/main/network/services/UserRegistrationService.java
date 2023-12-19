@@ -1,6 +1,6 @@
 package com.project.passmanager.main.network.services;
 
-import com.project.passmanager.main.EncryptConfig;
+import com.project.passmanager.main.algorithms.AES.EncryptConfig;
 import com.project.passmanager.main.domain.models.DomainUser;
 import com.project.passmanager.main.domain.models.Role;
 import com.project.passmanager.main.domain.repositories.IUserRepository;
