@@ -1,6 +1,7 @@
 package com.project.passmanager.main.network.pages;
 
 import com.project.passmanager.main.domain.models.SecretSpace;
+import com.project.passmanager.main.network.services.ChangeSaltService;
 import com.project.passmanager.main.network.services.SecretDetailsService;
 import com.project.passmanager.main.network.services.SpaceSecretsService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class SpaceSecretsPage {
 
     private final SpaceSecretsService spaceSecretsService;
     private final SecretDetailsService secretDetailsService;
+    private final ChangeSaltService changeSaltService;
 
     public static String redirectOnSelectedSpaceSecretsPage(String secretSpaceId) {
         return String.format("redirect:/spaceSecret/%s", secretSpaceId);
@@ -58,6 +60,11 @@ public class SpaceSecretsPage {
             SELECTED_SECRET_SPACE_ID = spaces.get(0).getId();
         }
 
+        return redirect();
+    }
+
+    public String changeSalt() {
+        changeSaltService.changeSalt();
         return redirect();
     }
 }

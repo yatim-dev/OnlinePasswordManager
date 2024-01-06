@@ -54,6 +54,15 @@ public class UsersDAO {
         }
     }
 
+    public void updateUserSaltNum(String userId, String newSaltNum) throws TransactionException {
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+            UserEntity user = session.get(UserEntity.class, userId);
+            user.setSaltNum(newSaltNum);
+            session.getTransaction().commit();
+        }
+    }
+
     public void putUser(UserEntity user) throws TransactionException {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();

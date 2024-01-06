@@ -29,7 +29,6 @@ public class RegistrationController {
     }
 
 
-    //TODO: salt
     /**
      * Метод сохранения формы регистрации
      */

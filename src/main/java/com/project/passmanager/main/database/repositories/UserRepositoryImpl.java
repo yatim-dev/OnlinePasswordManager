@@ -39,6 +39,11 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
+    public void updateUserSaltNum(String userId, String newSaltNum) {
+        usersDAO.updateUserSaltNum(userId, newSaltNum);
+    }
+
+    @Override
     public DomainUser getEmptyUser() {
         return new DomainUser(
                 UUID.randomUUID().toString(),

@@ -9,6 +9,8 @@ public interface IUserRepository {
 
     DomainUser getUser(String userId);
 
+    void updateUserSaltNum(String userId, String newSaltNum);
+
     DomainUser getEmptyUser();
 
     DomainUser getUserByLogin(String login);

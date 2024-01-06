@@ -39,6 +39,7 @@ public class UserRegistrationService implements UserDetailsService {
 
         try {
             domainUser = userRepository.getUserByLogin(username);
+            EncryptConfig.username = username;
             EncryptConfig.saltNum = domainUser.getSaltNum();
             EncryptConfig.key = domainUser.getHashPassword()
                     .substring(domainUser.getHashPassword().length() / 5, domainUser.getHashPassword().length() - 1)

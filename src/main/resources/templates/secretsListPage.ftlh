@@ -10,7 +10,7 @@
                 border-color: black;
                 position: absolute;
                 right: 50%;
-                left: 0%;
+                left: 0;
                 padding: 8px;
                 margin: 8px;
         }
@@ -21,7 +21,7 @@
                 border-color: black;
                 position: absolute;
                 left: 50%;
-                right: 0%;
+                right: 0;
                 padding: 8px;
                 margin: 8px;
         }
@@ -45,6 +45,9 @@
 </form>
 <form action="/logout" method="get">
     <input type="submit" value="logout"/>
+</form>
+<form action="/changeSalt" method="post">
+    <input type="submit" value="change salt"/>
 </form>
 </div>
 <div class="secretsDiv">

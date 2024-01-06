@@ -33,6 +33,11 @@ public class SpaceSecretsController {
         return spaceSecretsPage.saveSecretSpace(secretSpace);
     }
 
+    @PostMapping("/changeSalt")
+    public String changeSalt() {
+        return spaceSecretsPage.changeSalt();
+    }
+
     @GetMapping("/spaceSecret/deleteSecretSpace/{secretSpaceId}")
     public String deleteSecretSpace(@PathVariable String secretSpaceId) {
         return spaceSecretsPage.deleteSecretSpace(secretSpaceId);
